@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Optional;
 
 import processing.core.PImage;
 
@@ -52,4 +53,89 @@ public final class Entity
     public void nextImage() {
         this.imageIndex = (this.imageIndex + 1) % this.images.size();
     }
+
+    public boolean transformNotFull(
+            WorldModel world,
+            EventScheduler scheduler,
+            ImageStore imageStore)
+    {
+        if (this.resourceCount >= this.resourceLimit) {
+            Entity miner = Functions.createMinerFull(this.id, this.resourceLimit,
+                    this.position, this.actionPeriod,
+                    this.animationPeriod,
+                    this.images);
+
+            Functions.removeEntity(world, this);
+            Functions.unscheduleAllEvents(scheduler, this);
+
+            Functions.addEntity(world, miner);
+            Functions.scheduleActions(miner, scheduler, world, imageStore);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public void transformFull(
+            WorldModel world,
+            EventScheduler scheduler,
+            ImageStore imageStore)
+    {
+        Entity miner = Functions.createMinerNotFull(this.id, this.resourceLimit,
+                this.position, this.actionPeriod,
+                this.animationPeriod,
+                this.images);
+
+        Functions.removeEntity(world, this);
+        Functions.unscheduleAllEvents(scheduler, this);
+
+        Functions.addEntity(world, miner);
+        Functions.scheduleActions(miner, scheduler, world, imageStore);
+    }
+    public Point nextPositionMiner(
+            WorldModel world, Point destPos)
+    {
+        int horiz = Integer.signum(destPos.x - this.position.x);
+        Point newPos = new Point(this.position.x + horiz, this.position.y);
+
+        if (horiz == 0 || Functions.isOccupied(world, newPos)) {
+            int vert = Integer.signum(destPos.y - this.position.y);
+            newPos = new Point(this.position.x, this.position.y + vert);
+
+            if (vert == 0 || Functions.isOccupied(world, newPos)) {
+                newPos = this.position;
+            }
+        }
+
+        return newPos;
+    }
+
+    public Point nextPositionOreBlob(
+            WorldModel world, Point destPos)
+    {
+        int horiz = Integer.signum(destPos.x - this.position.x);
+        Point newPos = new Point(this.position.x + horiz, this.position.y);
+
+        Optional<Entity> occupant = Functions.getOccupant(world, newPos);
+
+        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().kind
+                == EntityKind.ORE)))
+        {
+            int vert = Integer.signum(destPos.y - this.position.y);
+            newPos = new Point(this.position.x, this.position.y + vert);
+            occupant = Functions.getOccupant(world, newPos);
+
+            if (vert == 0 || (occupant.isPresent() && !(occupant.get().kind
+                    == EntityKind.ORE)))
+            {
+                newPos = this.position;
+            }
+        }
+
+        return newPos;
+    }
+
+
+
 }

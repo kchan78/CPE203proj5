@@ -105,22 +105,8 @@ public final class Functions
                 break;
 
             case ANIMATION:
-                executeAnimationAction(action, scheduler);
+                action.executeAnimationAction(scheduler);
                 break;
-        }
-    }
-
-    public static void executeAnimationAction(
-            Action action, EventScheduler scheduler)
-    {
-        action.entity.nextImage();
-
-        if (action.repeatCount != 1) {
-            scheduleEvent(scheduler, action.entity,
-                          createAnimationAction(action.entity,
-                                                Math.max(action.repeatCount - 1,
-                                                         0)),
-                          action.entity.getAnimationPeriod());
         }
     }
 
@@ -137,7 +123,7 @@ public final class Functions
         if (fullTarget.isPresent() && moveToFull(entity, world,
                 fullTarget.get(), scheduler))
         {
-            transformFull(entity, world, scheduler, imageStore);
+            entity.transformFull(world, scheduler, imageStore);
         }
         else {
             scheduleEvent(scheduler, entity,
@@ -158,7 +144,7 @@ public final class Functions
         if (!notFullTarget.isPresent() || !moveToNotFull(entity, world,
                 notFullTarget.get(),
                 scheduler)
-                || !transformNotFull(entity, world, scheduler, imageStore))
+                || !entity.transformNotFull(world, scheduler, imageStore))
         {
             scheduleEvent(scheduler, entity,
                     createActivityAction(entity, world, imageStore),
@@ -307,47 +293,6 @@ public final class Functions
         }
     }
 
-    public static boolean transformNotFull(
-            Entity entity,
-            WorldModel world,
-            EventScheduler scheduler,
-            ImageStore imageStore)
-    {
-        if (entity.resourceCount >= entity.resourceLimit) {
-            Entity miner = createMinerFull(entity.id, entity.resourceLimit,
-                                           entity.position, entity.actionPeriod,
-                                           entity.animationPeriod,
-                                           entity.images);
-
-            removeEntity(world, entity);
-            unscheduleAllEvents(scheduler, entity);
-
-            addEntity(world, miner);
-            scheduleActions(miner, scheduler, world, imageStore);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public static void transformFull(
-            Entity entity,
-            WorldModel world,
-            EventScheduler scheduler,
-            ImageStore imageStore)
-    {
-        Entity miner = createMinerNotFull(entity.id, entity.resourceLimit,
-                                          entity.position, entity.actionPeriod,
-                                          entity.animationPeriod,
-                                          entity.images);
-
-        removeEntity(world, entity);
-        unscheduleAllEvents(scheduler, entity);
-
-        addEntity(world, miner);
-        scheduleActions(miner, scheduler, world, imageStore);
-    }
 
     public static boolean moveToNotFull(
             Entity miner,
@@ -363,7 +308,7 @@ public final class Functions
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(miner, world, target.position);
+            Point nextPos = miner.nextPositionMiner(world, target.position);
 
             if (!miner.position.equals(nextPos)) {
                 Optional<Entity> occupant = getOccupant(world, nextPos);
@@ -387,7 +332,7 @@ public final class Functions
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(miner, world, target.position);
+            Point nextPos = miner.nextPositionMiner(world, target.position);
 
             if (!miner.position.equals(nextPos)) {
                 Optional<Entity> occupant = getOccupant(world, nextPos);
@@ -413,7 +358,7 @@ public final class Functions
             return true;
         }
         else {
-            Point nextPos = nextPositionOreBlob(blob, world, target.position);
+            Point nextPos = blob.nextPositionOreBlob(world, target.position);
 
             if (!blob.position.equals(nextPos)) {
                 Optional<Entity> occupant = getOccupant(world, nextPos);
@@ -427,48 +372,7 @@ public final class Functions
         }
     }
 
-    public static Point nextPositionMiner(
-            Entity entity, WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.x - entity.position.x);
-        Point newPos = new Point(entity.position.x + horiz, entity.position.y);
 
-        if (horiz == 0 || isOccupied(world, newPos)) {
-            int vert = Integer.signum(destPos.y - entity.position.y);
-            newPos = new Point(entity.position.x, entity.position.y + vert);
-
-            if (vert == 0 || isOccupied(world, newPos)) {
-                newPos = entity.position;
-            }
-        }
-
-        return newPos;
-    }
-
-    public static Point nextPositionOreBlob(
-            Entity entity, WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.x - entity.position.x);
-        Point newPos = new Point(entity.position.x + horiz, entity.position.y);
-
-        Optional<Entity> occupant = getOccupant(world, newPos);
-
-        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().kind
-                == EntityKind.ORE)))
-        {
-            int vert = Integer.signum(destPos.y - entity.position.y);
-            newPos = new Point(entity.position.x, entity.position.y + vert);
-            occupant = getOccupant(world, newPos);
-
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get().kind
-                    == EntityKind.ORE)))
-            {
-                newPos = entity.position;
-            }
-        }
-
-        return newPos;
-    }
 
 
 

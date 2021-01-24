@@ -59,4 +59,18 @@ public final class Action
         }
     }
 
+    public void executeAnimationAction(EventScheduler scheduler)
+    {
+        this.entity.nextImage();
+
+        if (this.repeatCount != 1) {
+            Functions.scheduleEvent(scheduler, this.entity,
+                    Functions.createAnimationAction(this.entity,
+                            Math.max(this.repeatCount - 1,
+                                    0)),
+                    this.entity.getAnimationPeriod());
+        }
+    }
+
+
 }
