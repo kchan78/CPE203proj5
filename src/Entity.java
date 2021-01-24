@@ -137,5 +137,80 @@ public final class Entity
     }
 
 
+    public boolean moveToOreBlob(
+            WorldModel world,
+            Entity target,
+            EventScheduler scheduler)
+    {
+        if (this.position.adjacent(target.position)) {
+            Functions.removeEntity(world, target);
+            Functions.unscheduleAllEvents(scheduler, target);
+            return true;
+        }
+        else {
+            Point nextPos = this.nextPositionOreBlob(world, target.position);
+
+            if (!this.position.equals(nextPos)) {
+                Optional<Entity> occupant = Functions.getOccupant(world, nextPos);
+                if (occupant.isPresent()) {
+                    Functions.unscheduleAllEvents(scheduler, occupant.get());
+                }
+
+                Functions.moveEntity(world, this, nextPos);
+            }
+            return false;
+        }
+    }
+
+    public boolean moveToNotFull(
+            WorldModel world,
+            Entity target,
+            EventScheduler scheduler)
+    {
+        if (this.position.adjacent(target.position)) {
+            this.resourceCount += 1;
+            Functions.removeEntity(world, target);
+            Functions.unscheduleAllEvents(scheduler, target);
+
+            return true;
+        }
+        else {
+            Point nextPos = this.nextPositionMiner(world, target.position);
+
+            if (!this.position.equals(nextPos)) {
+                Optional<Entity> occupant = Functions.getOccupant(world, nextPos);
+                if (occupant.isPresent()) {
+                    Functions.unscheduleAllEvents(scheduler, occupant.get());
+                }
+
+                Functions.moveEntity(world, this, nextPos);
+            }
+            return false;
+        }
+    }
+
+    public boolean moveToFull(
+            WorldModel world,
+            Entity target,
+            EventScheduler scheduler)
+    {
+        if (this.position.adjacent(target.position)) {
+            return true;
+        }
+        else {
+            Point nextPos = this.nextPositionMiner(world, target.position);
+
+            if (!this.position.equals(nextPos)) {
+                Optional<Entity> occupant = Functions.getOccupant(world, nextPos);
+                if (occupant.isPresent()) {
+                    Functions.unscheduleAllEvents(scheduler, occupant.get());
+                }
+
+                Functions.moveEntity(world, this, nextPos);
+            }
+            return false;
+        }
+    }
+
 
 }

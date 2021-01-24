@@ -120,7 +120,7 @@ public final class Functions
         Optional<Entity> fullTarget =
                 findNearest(world, entity.position, EntityKind.BLACKSMITH);
 
-        if (fullTarget.isPresent() && moveToFull(entity, world,
+        if (fullTarget.isPresent() && entity.moveToFull(world,
                 fullTarget.get(), scheduler))
         {
             entity.transformFull(world, scheduler, imageStore);
@@ -141,7 +141,7 @@ public final class Functions
         Optional<Entity> notFullTarget =
                 findNearest(world, entity.position, EntityKind.ORE);
 
-        if (!notFullTarget.isPresent() || !moveToNotFull(entity, world,
+        if (!notFullTarget.isPresent() || !entity.moveToNotFull(world,
                 notFullTarget.get(),
                 scheduler)
                 || !entity.transformNotFull(world, scheduler, imageStore))
@@ -187,7 +187,7 @@ public final class Functions
         if (blobTarget.isPresent()) {
             Point tgtPos = blobTarget.get().position;
 
-            if (moveToOreBlob(entity, world, blobTarget.get(), scheduler)) {
+            if (entity.moveToOreBlob(world, blobTarget.get(), scheduler)) {
                 Entity quake = createQuake(tgtPos,
                         getImageList(imageStore, QUAKE_KEY));
 
@@ -293,84 +293,6 @@ public final class Functions
         }
     }
 
-
-    public static boolean moveToNotFull(
-            Entity miner,
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
-    {
-        if (miner.position.adjacent(target.position)) {
-            miner.resourceCount += 1;
-            removeEntity(world, target);
-            unscheduleAllEvents(scheduler, target);
-
-            return true;
-        }
-        else {
-            Point nextPos = miner.nextPositionMiner(world, target.position);
-
-            if (!miner.position.equals(nextPos)) {
-                Optional<Entity> occupant = getOccupant(world, nextPos);
-                if (occupant.isPresent()) {
-                    unscheduleAllEvents(scheduler, occupant.get());
-                }
-
-                moveEntity(world, miner, nextPos);
-            }
-            return false;
-        }
-    }
-
-    public static boolean moveToFull(
-            Entity miner,
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
-    {
-        if (miner.position.adjacent(target.position)) {
-            return true;
-        }
-        else {
-            Point nextPos = miner.nextPositionMiner(world, target.position);
-
-            if (!miner.position.equals(nextPos)) {
-                Optional<Entity> occupant = getOccupant(world, nextPos);
-                if (occupant.isPresent()) {
-                    unscheduleAllEvents(scheduler, occupant.get());
-                }
-
-                moveEntity(world, miner, nextPos);
-            }
-            return false;
-        }
-    }
-
-    public static boolean moveToOreBlob(
-            Entity blob,
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
-    {
-        if (blob.position.adjacent(target.position)) {
-            removeEntity(world, target);
-            unscheduleAllEvents(scheduler, target);
-            return true;
-        }
-        else {
-            Point nextPos = blob.nextPositionOreBlob(world, target.position);
-
-            if (!blob.position.equals(nextPos)) {
-                Optional<Entity> occupant = getOccupant(world, nextPos);
-                if (occupant.isPresent()) {
-                    unscheduleAllEvents(scheduler, occupant.get());
-                }
-
-                moveEntity(world, blob, nextPos);
-            }
-            return false;
-        }
-    }
 
 
 
@@ -660,6 +582,8 @@ public final class Functions
 
         return properties.length == VEIN_NUM_PROPERTIES;
     }
+
+
 
     public static void tryAddEntity(WorldModel world, Entity entity) {
         if (isOccupied(world, entity.position)) {

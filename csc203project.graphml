@@ -228,7 +228,7 @@
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="66.10546875" x="149.447265625" xml:space="preserve" y="3.0">Functions<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
+          <y:UML clipContent="false" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">+rand: Random                                &lt;&lt;static&gt;&gt;
 +BLOB_KEY: String                            &lt;&lt;static&gt;&gt;
 +SMITH_ID: int                               &lt;&lt;static&gt;&gt;
@@ -287,30 +287,22 @@
 +BGND_ROW: int                               &lt;&lt;static&gt;&gt;</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+getCurrentImage(): PImage            &lt;&lt;static&gt;&gt;
 
-+nextImage()                                 &lt;&lt;static&gt;&gt;
 +executeAction()                             &lt;&lt;static&gt;&gt;
-+executeAnimationAction()                    &lt;&lt;static&gt;&gt;
-
 +executeMinerFullActivity()                  &lt;&lt;static&gt;&gt;
 +executeMinerNotFullActivity()             &lt;&lt;static&gt;&gt;
 +executeOreActivity()                           &lt;&lt;static&gt;&gt;
 +executeOreBlobActivity()                     &lt;&lt;static&gt;&gt;
 +executeQuakeActivity()                       &lt;&lt;static&gt;&gt;
 +executeVeinActivity()                          &lt;&lt;static&gt;&gt;
-+scheduleActions()                           &lt;&lt;static&gt;&gt;
-+transformNotFull(): boolean                 &lt;&lt;static&gt;&gt;
-+transformFull()                             &lt;&lt;static&gt;&gt;
-+moveToNotFull(): boolean                    &lt;&lt;static&gt;&gt;
-+moveToFull(): boolean                       &lt;&lt;static&gt;&gt;
-+moveToOreBlob(): boolean                    &lt;&lt;static&gt;&gt;
-+nextPositionMiner(): Point                  &lt;&lt;static&gt;&gt;
-+nextPositionOreBlob(): Point                &lt;&lt;static&gt;&gt;
 
++scheduleActions()                           &lt;&lt;static&gt;&gt;
+         
 +findOpenAround(): Optional&lt;Point&gt;  &lt;&lt;static&gt;&gt;
 +scheduleEvent()                                  &lt;&lt;static&gt;&gt;
 +unscheduleAllEvents()                       &lt;&lt;static&gt;&gt;
 +removePendingEvent()                        &lt;&lt;static&gt;&gt;
 +updateOnTime()                              &lt;&lt;static&gt;&gt;
+
 +getImageList(): List&lt;PImage&gt;                &lt;&lt;static&gt;&gt;
 +loadImages()                                &lt;&lt;static&gt;&gt;
 +processImageLine()                          &lt;&lt;static&gt;&gt;
@@ -325,6 +317,7 @@
 +parseOre(): boolean                         &lt;&lt;static&gt;&gt;
 +parseSmith(): boolean                       &lt;&lt;static&gt;&gt;
 +parseVein(): boolean                        &lt;&lt;static&gt;&gt;
+
 +tryAddEntity()                              &lt;&lt;static&gt;&gt;
 +withinBounds(): boolean                     &lt;&lt;static&gt;&gt;
 +isOccupied(): boolean                       &lt;&lt;static&gt;&gt;
@@ -377,7 +370,8 @@
 +world: WorldModel
 +imageStore: ImageStore
 +repeatCount: int</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+executeActivityAction()                     </y:MethodLabel>
+            <y:MethodLabel xml:space="preserve">+executeActivityAction() 
++executeAnimationAction()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -402,7 +396,7 @@ ANIMATION</y:AttributeLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="248.86955359450678" width="168.51625251004018" x="719.4874667830491" y="34.13426797467653"/>
+          <y:Geometry height="312.1313394190682" width="168.51625251004018" x="719.4874667830491" y="-21.462362687800805"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.11181640625" x="64.20221805189509" xml:space="preserve" y="3.0">Entity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -416,7 +410,15 @@ ANIMATION</y:AttributeLabel>
 +resourceCount: int
 +actionPeriod: int
 +animationPeriod: int</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int  </y:MethodLabel>
+            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int  
++nextImage() 
++transformNotFull(): boolean           
++transformFull()
++nextPositionMiner(): Point             
++nextPositionOreBlob(): Point 
++moveToOreBlob(): boolean
++moveToNotFull(): boolean             
++moveToFull(): boolean       </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
