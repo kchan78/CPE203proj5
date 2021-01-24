@@ -1,4 +1,7 @@
 import processing.core.PApplet;
+import processing.core.PImage;
+
+import java.util.Optional;
 
 public final class WorldView
 {
@@ -22,4 +25,19 @@ public final class WorldView
         this.tileHeight = tileHeight;
         this.viewport = new Viewport(numRows, numCols);
     }
+
+    public void shiftView(int colDelta, int rowDelta) {
+        int newCol = Functions.clamp(this.viewport.col + colDelta, 0,
+                this.world.numCols - this.viewport.numCols);
+        int newRow = Functions.clamp(this.viewport.row + rowDelta, 0,
+                this.world.numRows - this.viewport.numRows);
+
+        this.viewport.shift(newCol, newRow);
+    }
+
+
+
+
+
+
 }

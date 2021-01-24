@@ -664,10 +664,7 @@ public final class Functions
         img.updatePixels();
     }
 
-    public static void shift(Viewport viewport, int col, int row) {
-        viewport.col = col;
-        viewport.row = row;
-    }
+
 
     public static boolean contains(Viewport viewport, Point p) {
         return p.y >= viewport.row && p.y < viewport.row + viewport.numRows
@@ -976,15 +973,6 @@ public final class Functions
         return Math.min(high, Math.max(value, low));
     }
 
-    public static void shiftView(WorldView view, int colDelta, int rowDelta) {
-        int newCol = clamp(view.viewport.col + colDelta, 0,
-                           view.world.numCols - view.viewport.numCols);
-        int newRow = clamp(view.viewport.row + rowDelta, 0,
-                           view.world.numRows - view.viewport.numRows);
-
-        shift(view.viewport, newCol, newRow);
-    }
-
     public static void drawBackground(WorldView view) {
         for (int row = 0; row < view.viewport.numRows; row++) {
             for (int col = 0; col < view.viewport.numCols; col++) {
@@ -993,7 +981,7 @@ public final class Functions
                         getBackgroundImage(view.world, worldPoint);
                 if (image.isPresent()) {
                     view.screen.image(image.get(), col * view.tileWidth,
-                                      row * view.tileHeight);
+                            row * view.tileHeight);
                 }
             }
         }
@@ -1006,8 +994,8 @@ public final class Functions
             if (contains(view.viewport, pos)) {
                 Point viewPoint = worldToViewport(view.viewport, pos.x, pos.y);
                 view.screen.image(getCurrentImage(entity),
-                                  viewPoint.x * view.tileWidth,
-                                  viewPoint.y * view.tileHeight);
+                        viewPoint.x * view.tileWidth,
+                        viewPoint.y * view.tileHeight);
             }
         }
     }
