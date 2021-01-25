@@ -137,7 +137,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="167.85940771929828" width="192.99999999999991" x="177.33174949816254" y="21.5273222780272"/>
+          <y:Geometry height="329.52575607161816" width="192.99999999999991" x="177.33174949816254" y="-148.4076767438596"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="78.37548828125" x="57.31225585937496" xml:space="preserve" y="3.0">WorldModel<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -147,7 +147,20 @@
 +background: Background[][]
 +occupancy: Entity[][]
 +entities: Set&lt;Entity&gt;</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve"/>
+            <y:MethodLabel xml:space="preserve">+tryAddEntity()
++withinBounds(): boolean
++isOccupied(): boolean 
++addEntity()
++moveEntity()
++removeEntity()
++removeEntityAt()
++getBackgroundImage(): Optional&lt;PImage&gt; 
++setBackground()
++getOccupant(): Optional&lt;Entity&gt;  
++getOccupancyCell(): Entity
++setOccupancyCell() 
++getBackgroundCell(): Background
++setBackgroundCell()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -318,23 +331,11 @@
 +parseSmith(): boolean                       &lt;&lt;static&gt;&gt;
 +parseVein(): boolean                        &lt;&lt;static&gt;&gt;
 
-+tryAddEntity()                              &lt;&lt;static&gt;&gt;
-+withinBounds(): boolean                     &lt;&lt;static&gt;&gt;
-+isOccupied(): boolean                       &lt;&lt;static&gt;&gt;
 +nearestEntity(): Optional&lt;Entity&gt;           &lt;&lt;static&gt;&gt;
-
 +findNearest(): Optional&lt;Entity&gt;             &lt;&lt;static&gt;&gt;
-+addEntity()                                 &lt;&lt;static&gt;&gt;
-+moveEntity()                                &lt;&lt;static&gt;&gt;
-+removeEntity()                              &lt;&lt;static&gt;&gt;
-+removeEntityAt()                            &lt;&lt;static&gt;&gt;
-+getBackgroundImage(): Optional&lt;PImage&gt;      &lt;&lt;static&gt;&gt;
-+setBackground()                             &lt;&lt;static&gt;&gt;
-+getOccupant(): Optional&lt;Entity&gt;             &lt;&lt;static&gt;&gt;
-+getOccupancyCell(): Entity                  &lt;&lt;static&gt;&gt;
-+setOccupancyCell()                          &lt;&lt;static&gt;&gt;
-+getBackgroundCell(): Background             &lt;&lt;static&gt;&gt;
-+setBackgroundCell()                         &lt;&lt;static&gt;&gt;
+
+
+
 +viewportToWorld(): Point                    &lt;&lt;static&gt;&gt;
 +worldToViewport(): Point                    &lt;&lt;static&gt;&gt;
 +clamp()                                      &lt;&lt;static&gt;&gt;
@@ -342,6 +343,7 @@
 +drawBackground()                            &lt;&lt;static&gt;&gt;
 +drawEntities()                              &lt;&lt;static&gt;&gt;
 +drawViewport()                              &lt;&lt;static&gt;&gt;
+
 +createAnimationAction(): Action             &lt;&lt;static&gt;&gt;
 +createActivityAction(): Action              &lt;&lt;static&gt;&gt;
 +createBlacksmith(): Entity                  &lt;&lt;static&gt;&gt;
