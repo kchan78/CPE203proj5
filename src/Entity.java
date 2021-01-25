@@ -66,7 +66,7 @@ public final class Entity
                     this.images);
 
             world.removeEntity(this);
-            Functions.unscheduleAllEvents(scheduler, this);
+            scheduler.unscheduleAllEvents(this);
 
             world.addEntity(miner);
             Functions.scheduleActions(miner, scheduler, world, imageStore);
@@ -88,7 +88,7 @@ public final class Entity
                 this.images);
 
         world.removeEntity(this);
-        Functions.unscheduleAllEvents(scheduler, this);
+        scheduler.unscheduleAllEvents(this);
 
         world.addEntity(miner);
         Functions.scheduleActions(miner, scheduler, world, imageStore);
@@ -144,7 +144,7 @@ public final class Entity
     {
         if (this.position.adjacent(target.position)) {
             world.removeEntity(target);
-            Functions.unscheduleAllEvents(scheduler, target);
+            scheduler.unscheduleAllEvents(target);
             return true;
         }
         else {
@@ -153,7 +153,7 @@ public final class Entity
             if (!this.position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent()) {
-                    Functions.unscheduleAllEvents(scheduler, occupant.get());
+                    scheduler.unscheduleAllEvents(occupant.get());
                 }
 
                 world.moveEntity(this, nextPos);
@@ -170,7 +170,7 @@ public final class Entity
         if (this.position.adjacent(target.position)) {
             this.resourceCount += 1;
             world.removeEntity(target);
-            Functions.unscheduleAllEvents(scheduler, target);
+            scheduler.unscheduleAllEvents(target);
 
             return true;
         }
@@ -180,7 +180,7 @@ public final class Entity
             if (!this.position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent()) {
-                    Functions.unscheduleAllEvents(scheduler, occupant.get());
+                    scheduler.unscheduleAllEvents(occupant.get());
                 }
 
                 world.moveEntity(this, nextPos);
@@ -203,7 +203,7 @@ public final class Entity
             if (!this.position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent()) {
-                    Functions.unscheduleAllEvents(scheduler, occupant.get());
+                    scheduler.unscheduleAllEvents(occupant.get());
                 }
 
                 world.moveEntity(this, nextPos);

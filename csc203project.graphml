@@ -18,7 +18,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="103.97969602325259" width="149.0" x="498.6169372294555" y="2.1869706434141563"/>
+          <y:Geometry height="103.97969602325259" width="149.0" x="498.6169372294555" y="-35.63464671967682"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="79.841796875" x="34.5791015625" xml:space="preserve" y="3.0">Background<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -67,7 +67,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="117.98026143674588" width="273.0" x="137.33174949816248" y="424.2740693497609"/>
+          <y:Geometry height="148.8007927017544" width="273.0" x="137.33174949816248" y="424.2740693497609"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="102.25537109375" x="85.372314453125" xml:space="preserve" y="3.0">EventScheduler<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -75,7 +75,10 @@
             <y:AttributeLabel xml:space="preserve">+eventQueue: PriorityQueue&lt;Event&gt;
 +pendingEvents: Map&lt;Entity, List&lt;Event&gt;&gt;
 +timeScale: double</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve"/>
+            <y:MethodLabel xml:space="preserve">+scheduleEvent() 
++unscheduleAllEvents()
++removePendingEvent()
++updateOnTime()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -91,7 +94,7 @@
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">+images: Map&lt;String, List&lt;PImage&gt;&gt;
 +defaultImages: List&lt;PImage&gt;</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve"/>
+            <y:MethodLabel xml:space="preserve">+getImageList(): List&lt;PImage&gt; </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -119,7 +122,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="148.8007927017544" width="164.0" x="491.1169372294555" y="233.71059466040646"/>
+          <y:Geometry height="174.31940135362873" width="164.0" x="491.1169372294555" y="233.71059466040643"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="58.89453125" x="52.552734375" xml:space="preserve" y="3.0">Viewport<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -130,7 +133,8 @@
 +numCols: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+shift()
 +viewportToWorld(): Point
-+worldToViewport(): Point</y:MethodLabel>
++worldToViewport(): Point
++contains(): boolean</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -305,7 +309,6 @@
 +BGND_ROW: int                               &lt;&lt;static&gt;&gt;</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+getCurrentImage(): PImage            &lt;&lt;static&gt;&gt;
 
-+executeAction()                             &lt;&lt;static&gt;&gt;
 +executeMinerFullActivity()                  &lt;&lt;static&gt;&gt;
 +executeMinerNotFullActivity()             &lt;&lt;static&gt;&gt;
 +executeOreActivity()                           &lt;&lt;static&gt;&gt;
@@ -316,17 +319,13 @@
 +scheduleActions()                           &lt;&lt;static&gt;&gt;
          
 +findOpenAround(): Optional&lt;Point&gt;  &lt;&lt;static&gt;&gt;
-+scheduleEvent()                                  &lt;&lt;static&gt;&gt;
-+unscheduleAllEvents()                       &lt;&lt;static&gt;&gt;
-+removePendingEvent()                        &lt;&lt;static&gt;&gt;
-+updateOnTime()                              &lt;&lt;static&gt;&gt;
 
-+getImageList(): List&lt;PImage&gt;                &lt;&lt;static&gt;&gt;
+
 +loadImages()                                &lt;&lt;static&gt;&gt;
 +processImageLine()                          &lt;&lt;static&gt;&gt;
 +getImages(): List&lt;PImage&gt;                   &lt;&lt;static&gt;&gt;
 +setAlpha()                                  &lt;&lt;static&gt;&gt;
-+contains(): boolean                         &lt;&lt;static&gt;&gt;
+
 +load()                                      &lt;&lt;static&gt;&gt;
 +processLine(): boolean                      &lt;&lt;static&gt;&gt;
 +parseBackground(): boolean                  &lt;&lt;static&gt;&gt;
@@ -370,7 +369,8 @@
 +imageStore: ImageStore
 +repeatCount: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+executeActivityAction() 
-+executeAnimationAction()</y:MethodLabel>
++executeAnimationAction()
++executeAction()  </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
