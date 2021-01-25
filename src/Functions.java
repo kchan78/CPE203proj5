@@ -632,49 +632,13 @@ public final class Functions
 
 
 
-    public static Point viewportToWorld(Viewport viewport, int col, int row) {
-        return new Point(col + viewport.col, row + viewport.row);
-    }
 
-    public static Point worldToViewport(Viewport viewport, int col, int row) {
-        return new Point(col - viewport.col, row - viewport.row);
-    }
 
     public static int clamp(int value, int low, int high) {
         return Math.min(high, Math.max(value, low));
     }
 
-    public static void drawBackground(WorldView view) {
-        for (int row = 0; row < view.viewport.numRows; row++) {
-            for (int col = 0; col < view.viewport.numCols; col++) {
-                Point worldPoint = viewportToWorld(view.viewport, col, row);
-                Optional<PImage> image =
-                        view.world.getBackgroundImage(worldPoint);
-                if (image.isPresent()) {
-                    view.screen.image(image.get(), col * view.tileWidth,
-                            row * view.tileHeight);
-                }
-            }
-        }
-    }
 
-    public static void drawEntities(WorldView view) {
-        for (Entity entity : view.world.entities) {
-            Point pos = entity.position;
-
-            if (contains(view.viewport, pos)) {
-                Point viewPoint = worldToViewport(view.viewport, pos.x, pos.y);
-                view.screen.image(getCurrentImage(entity),
-                        viewPoint.x * view.tileWidth,
-                        viewPoint.y * view.tileHeight);
-            }
-        }
-    }
-
-    public static void drawViewport(WorldView view) {
-        drawBackground(view);
-        drawEntities(view);
-    }
 
     public static Action createAnimationAction(Entity entity, int repeatCount) {
         return new Action(ActionKind.ANIMATION, entity, null, null,

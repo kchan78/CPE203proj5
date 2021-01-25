@@ -14,4 +14,15 @@ public final class Viewport
         this.col = col;
         this.row = row;
     }
+
+
+    public Point viewportToWorld(int col, int row) {
+        return new Point(col + this.col, row + this.row);
+    }
+
+    public Point worldToViewport(int col, int row) {
+        return new Point(col - this.col, row - this.row);
+    }
+
+
 }
