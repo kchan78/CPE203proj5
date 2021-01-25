@@ -36,6 +36,10 @@ public final class Entity
         this.animationPeriod = animationPeriod;
     }
 
+    public PImage getCurrentImage() {
+            return (images.get(imageIndex));
+    }
+
     public int getAnimationPeriod() {
         switch (this.kind) {
             case MINER_FULL:

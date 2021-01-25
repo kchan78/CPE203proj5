@@ -1,0 +1,7 @@
+I left nearestEntity() and findNearest() because
+
+I left findOpenAround in Functions because it used the ORE_REACH data and didn't use instance variables from another class except for Point. 
+
+
+Ambiguous methods-
+I put moveEntity into WorldModel instead of Entity because it made more sense to me to move the entity within the world rather than entities moving themselves. Also, the if-statement checked conditional WorldModel method and called methods that were in WorldModel.
