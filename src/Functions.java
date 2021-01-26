@@ -1,8 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
 import java.util.Scanner;
 
 import processing.core.PImage;
@@ -14,7 +12,6 @@ public final class Functions
     public static final String QUAKE_ID = "quake";
     public static final int QUAKE_ACTION_PERIOD = 1100;
     public static final int QUAKE_ANIMATION_PERIOD = 100;
-
 
     public static final int COLOR_MASK = 0xffffff;
     public static final int KEYED_IMAGE_MIN = 5;
@@ -114,8 +111,6 @@ public final class Functions
         }
         img.updatePixels();
     }
-
-
 
     public static void load(
             Scanner in, WorldModel world, ImageStore imageStore)

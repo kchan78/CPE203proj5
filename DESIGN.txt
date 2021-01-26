@@ -24,8 +24,6 @@ I moved getCurrentImage into both Entity and Background because the original met
 
 transformFull/NotFull into Entity instead of WorldModel since it used a lot of Entity data and called an Entity method whereas it only called WorldModel methods but not data. 
 
-findOpenAround
-
 nexPostitionMiner/OreBlob were both moved to Entity not Point because the methods used data about the position of an entity, not just any position point. So, they should specifically be bundled with Entity.
 
 I move withinBounds to WorldModel and not Point since it was checking whether a Point was inside a World. Since Points are within worlds, it made more sense to me to bundle the method with the higher class.
@@ -34,8 +32,12 @@ executeAction to Action because it accessed Action data (kind) to decide what ca
 
 scheduleActions to Entity because it accessed Entity kind to decide what case statement to enter. It only used Entity class data and not any other class data like Action, despite method name.
 
-findNearest() to WorldModel since it used the entities instance variable. nearestEntity() also moved as static just since findNearest() called it.
+findNearest() to WorldModel since it used the entities instance variable. nearestEntity() also moved as static just since findNearest() called it; purely organizational reason.
 
-findOpenAround() to WorldModel simply because it used class methods and was checking points within a WorldModel, so it didn't feel like it belonged in Point.
+findOpenAround() to WorldModel simply because it used class methods and was checking points within a WorldModel, so it didn't feel like it belonged in Point. Could have left in Functions, but just organizational reasons.
+
+shiftView() to WorldView since it accessed the viewport and world instance variables (and then used other data from those variables). Didn't make sense in either WorldModel or Viewport since it would still need data from the other class, so it needed to be put in a higher class.
+
+clamp() to WorldView as static because only shiftView() method in WorldView called it. Purely organizational reasons.
 
 loadImage() to ImageStore instead of left in Functions since it used the images instance variable.
