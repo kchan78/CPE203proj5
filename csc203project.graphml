@@ -298,11 +298,9 @@
 +ORE_ACTION_PERIOD: int                      &lt;&lt;static&gt;&gt;
 +SMITH_KEY: String                           &lt;&lt;static&gt;&gt;
 +SMITH_NUM_PROPERTIES: int                   &lt;&lt;static&gt;&gt;
-
 +QUAKE_ID: String                            &lt;&lt;static&gt;&gt;
 +QUAKE_ACTION_PERIOD: int                    &lt;&lt;static&gt;&gt;
 +QUAKE_ANIMATION_PERIOD: int                 &lt;&lt;static&gt;&gt;
-
 +COLOR_MASK: int                             &lt;&lt;static&gt;&gt;
 +KEYED_IMAGE_MIN: int                        &lt;&lt;static&gt;&gt;
 +KEYED_RED_IDX: int                        &lt;&lt;static&gt;&gt;
