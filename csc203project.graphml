@@ -23,9 +23,9 @@
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="79.841796875" x="42.0791015625" xml:space="preserve" y="3.0">Background<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+id: String
-+images: List&lt;PImage&gt;
-+imageIndex: int</y:AttributeLabel>
+            <y:AttributeLabel xml:space="preserve">-d: String
+-images: List&lt;PImage&gt;
+-imageIndex: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+getCurrentImage(): PImage  </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -35,15 +35,18 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="103.97969602325259" width="137.0" x="801.8801474240339" y="446.6846176890119"/>
+          <y:Geometry height="137.0" width="137.0" x="801.8801474240339" y="430.17446570063817"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="39.40087890625" x="48.799560546875" xml:space="preserve" y="3.0">Event<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+action: Action
-+time: long
-+entity: Entity</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve"/>
+            <y:AttributeLabel xml:space="preserve">-action: Action
+-time: long
+-entity: Entity</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+getAction(): action
++getTime(): long
++getEntity(): Entity
+</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -72,12 +75,12 @@
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="102.25537109375" x="85.372314453125" xml:space="preserve" y="3.0">EventScheduler<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+eventQueue: PriorityQueue&lt;Event&gt;
-+pendingEvents: Map&lt;Entity, List&lt;Event&gt;&gt;
-+timeScale: double</y:AttributeLabel>
+            <y:AttributeLabel xml:space="preserve">-eventQueue: PriorityQueue&lt;Event&gt;
+-pendingEvents: Map&lt;Entity, List&lt;Event&gt;&gt;
+-timeScale: double</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+scheduleEvent() 
 +unscheduleAllEvents()
-+removePendingEvent()
+-removePendingEvent()
 +updateOnTime()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -92,8 +95,8 @@
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="74.8017578125" x="83.09912109375" xml:space="preserve" y="3.0">ImageStore<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+images: Map&lt;String, List&lt;PImage&gt;&gt;
-+defaultImages: List&lt;PImage&gt;</y:AttributeLabel>
+            <y:AttributeLabel xml:space="preserve">-images: Map&lt;String, List&lt;PImage&gt;&gt;
+-defaultImages: List&lt;PImage&gt;</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+getImageList(): List&lt;PImage&gt; 
 +loadImages()</y:MethodLabel>
           </y:UML>
@@ -123,19 +126,23 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="174.31940135362873" width="164.0" x="440.3317494981625" y="215.53637366194536"/>
+          <y:Geometry height="227.97096514310243" width="164.0" x="440.3317494981625" y="188.7105917672085"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="58.89453125" x="52.552734375" xml:space="preserve" y="3.0">Viewport<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+row: int
-+col: int
-+numRows: int
-+numCols: int</y:AttributeLabel>
+            <y:AttributeLabel xml:space="preserve">-row: int
+-col: int
+-numRows: int
+-numCols: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+shift()
 +viewportToWorld(): Point
 +worldToViewport(): Point
-+contains(): boolean</y:MethodLabel>
++contains(): boolean
++getRows(): int
++getCols(): int
++getNumRows(): int
++getNumCols(): int</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -144,18 +151,21 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="373.5475520014427" width="246.32505653894725" x="153.63172436974145" y="-211.68900839298243"/>
+          <y:Geometry height="428.5747969137234" width="246.32505653894725" x="153.63172436974145" y="-248.8323987087719"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="78.37548828125" x="83.97478412884863" xml:space="preserve" y="3.0">WorldModel<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+numRows: int
-+numCols: int
-+background: Background[][]
-+occupancy: Entity[][]
-+entities: Set&lt;Entity&gt;
-+ORE_REACH: int                              &lt;&lt;static&gt;&gt;</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+tryAddEntity()
+            <y:AttributeLabel xml:space="preserve">-numRows: int
+-numCols: int
+-background: Background[][]
+-occupancy: Entity[][]
+-entities: Set&lt;Entity&gt;
+-ORE_REACH: int                  &lt;&lt;static&gt;&gt;</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">+getNumRows(): int
++getNumCols(): int
++getEntitySet(): Set&lt;Entity&gt; 
++tryAddEntity()
 +withinBounds(): boolean
 +isOccupied(): boolean 
 +addEntity()
@@ -165,12 +175,14 @@
 +getBackgroundImage(): Optional&lt;PImage&gt; 
 +setBackground()
 +getOccupant(): Optional&lt;Entity&gt;  
-+getOccupancyCell(): Entity
-+setOccupancyCell() 
-+getBackgroundCell(): Background
-+setBackgroundCell()
 +findNearest(): Optional&lt;Entity&gt;
-+findOpenAround(): Optional&lt;Point&gt; </y:MethodLabel>
++findOpenAround(): Optional&lt;Point&gt; 
++nearestEntity(): Optional&lt;Entity&gt;           &lt;&lt;static&gt;&gt;
+-getOccupancyCell(): Entity
+-setOccupancyCell() 
+-getBackgroundCell(): Background
+-setBackgroundCell()
+</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -179,19 +191,20 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="183.36332934736845" width="159.99999999999994" x="193.8317494981625" y="224.66666666666674"/>
+          <y:Geometry height="194.36877832982452" width="159.99999999999994" x="193.8317494981625" y="211.0144096650755"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="70.447265625" x="44.77636718749997" xml:space="preserve" y="3.0">WorldView<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+screen: PApplet
-+world: WorldModel
-+tileWidth: int
-+tileHeight: int
-+viewport: Viewport</y:AttributeLabel>
+            <y:AttributeLabel xml:space="preserve">-screen: PApplet
+-world: WorldModel
+-tileWidth: int
+-tileHeight: int
+-viewport: Viewport</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+shiftView() 
-+drawBackground() 
-+drawEntities()
++clamp()              &lt;&lt;static&gt;&gt;
+-drawBackground() 
+-drawEntities()
 +drawViewport()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -227,20 +240,20 @@
 +FAST_SCALE: double                  &lt;&lt;static&gt;&gt;
 +FASTER_SCALE: double              &lt;&lt;static&gt;&gt;
 +FASTEST_SCALE: double            &lt;&lt;static&gt;&gt;
-+timeScale: double
-+imageStore: ImageStore
-+world: WorldModel
-+view: WorldView
-+scheduler: EventScheduler</y:AttributeLabel>
+-timeScale: double
+-imageStore: ImageStore
+-world: WorldModel
+-view: WorldView
+-scheduler: EventScheduler</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+settings()
 +setup()
 +draw()
 +keyPressed()
-+createDefaultBackground()         &lt;&lt;static&gt;&gt;
-+createImageColored()                 &lt;&lt;static&gt;&gt;
-+loadWorld()                                 &lt;&lt;static&gt;&gt;
-+scheduleActions()                       &lt;&lt;static&gt;&gt;
-+parseCommandLine()                  &lt;&lt;static&gt;&gt;
+-createDefaultBackground()         
+-createImageColored()                 
+-loadWorld()                                 
+-scheduleActions()                       
+-parseCommandLine()                  &lt;&lt;static&gt;&gt;
 +main()                                         &lt;&lt;static&gt;&gt;</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -250,7 +263,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="1137.8686139186732" width="365.0" x="410.4890354750695" y="770.5802935446837"/>
+          <y:Geometry height="1069.084557778322" width="365.0" x="410.4890354750695" y="770.5802935446839"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="66.10546875" x="149.447265625" xml:space="preserve" y="3.0">Functions<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -314,9 +327,6 @@
 +parseSmith(): boolean                       &lt;&lt;static&gt;&gt;
 +parseVein(): boolean                        &lt;&lt;static&gt;&gt;
 
-+nearestEntity(): Optional&lt;Entity&gt;           &lt;&lt;static&gt;&gt;
-+clamp()                                      &lt;&lt;static&gt;&gt;
-
 +createAnimationAction(): Action             &lt;&lt;static&gt;&gt;
 +createActivityAction(): Action              &lt;&lt;static&gt;&gt;
 +createBlacksmith(): Entity                  &lt;&lt;static&gt;&gt;
@@ -340,13 +350,13 @@
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="44.44091796875" x="61.276375576089094" xml:space="preserve" y="3.0">Action<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+kind: ActionKind
-+entity: Entity
-+world: WorldModel
-+imageStore: ImageStore
-+repeatCount: int</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+executeActivityAction() 
-+executeAnimationAction()
+            <y:AttributeLabel xml:space="preserve">-kind: ActionKind
+-entity: Entity
+-world: WorldModel
+-imageStore: ImageStore
+-repeatCount: int</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">-executeActivityAction() 
+-executeAnimationAction()
 +executeAction()  </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -372,32 +382,32 @@ ANIMATION</y:AttributeLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="634.7307015537984" width="265.5845922582455" x="761.2770935502224" y="-291.38038162530063"/>
+          <y:Geometry height="651.2388750274827" width="265.5845922582455" x="761.2770935502224" y="-291.38038162530063"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.11181640625" x="112.73638792599775" xml:space="preserve" y="3.0">Entity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
-            <y:AttributeLabel xml:space="preserve">+kind: EntityKind
-+id: String
-+position: Point
-+images: List&lt;PImage&gt;
-+imageIndex: int
-+resourceLimit: int
-+resourceCount: int
-+actionPeriod: int
-+animationPeriod: int
+            <y:AttributeLabel xml:space="preserve">-kind: EntityKind
+-id: String
+-position: Point
+-images: List&lt;PImage&gt;
+-imageIndex: int
+-resourceLimit: int
+-resourceCount: int
+-actionPeriod: int
+-animationPeriod: int
 
-+rand: Random
-+BLOB_KEY: String
-+BLOB_ID_SUFFIX: String
-+BLOB_PERIOD_SCALE: int
-+BLOB_ANIMATION_MIN: int
-+BLOB_ANIMATION_MAX: int
-+ORE_ID_PREFIX: String
-+ORE_CORRUPT_MIN: int
-+ORE_CORRUPT_MAX: int
-+QUAKE_KEY: String
-+QUAKE_ANIMATION_REPEAT_COUNT: int
+-rand: Random
+-BLOB_KEY: String          &lt;&lt;static&gt;&gt;
+-BLOB_ID_SUFFIX: String       &lt;&lt;static&gt;&gt;
+-BLOB_PERIOD_SCALE: int       &lt;&lt;static&gt;&gt;
+-BLOB_ANIMATION_MIN: int       &lt;&lt;static&gt;&gt;
+-BLOB_ANIMATION_MAX: int       &lt;&lt;static&gt;&gt;
+-ORE_ID_PREFIX: String       &lt;&lt;static&gt;&gt;
+-ORE_CORRUPT_MIN: int       &lt;&lt;static&gt;&gt;
+-ORE_CORRUPT_MAX: int       &lt;&lt;static&gt;&gt;
+-QUAKE_KEY: String       &lt;&lt;static&gt;&gt;
+-QUAKE_ANIMATION_REPEAT_COUNT: int       &lt;&lt;static&gt;&gt;
 </y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+getCurrentImage(): PImage  
 +executeMinerFullActivity()
@@ -409,13 +419,16 @@ ANIMATION</y:AttributeLabel>
 +scheduleActions() 
 +getAnimationPeriod(): int  
 +nextImage() 
-+transformNotFull(): boolean           
-+transformFull()
-+nextPositionMiner(): Point             
-+nextPositionOreBlob(): Point 
-+moveToOreBlob(): boolean
-+moveToNotFull(): boolean             
-+moveToFull(): boolean       </y:MethodLabel>
+-transformNotFull(): boolean           
+-transformFull()
+-nextPositionMiner(): Point             
+-nextPositionOreBlob(): Point 
+-moveToOreBlob(): boolean
+-moveToNotFull(): boolean             
+-moveToFull(): boolean  
++getKind(): EntityKind
++getPosition(): Point
++setPosition() </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
