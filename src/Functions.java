@@ -11,8 +11,6 @@ import processing.core.PApplet;
 public final class Functions
 {
 
-    public static final int ORE_REACH = 1;
-
     public static final String QUAKE_ID = "quake";
     public static final int QUAKE_ACTION_PERIOD = 1100;
     public static final int QUAKE_ANIMATION_PERIOD = 100;
@@ -67,63 +65,6 @@ public final class Functions
     public static final int VEIN_ROW = 3;
     public static final int VEIN_ACTION_PERIOD = 4;
 
-
-
-
-
-
-
-
-    public static void executeQuakeActivity(
-            Entity entity,
-            WorldModel world,
-            ImageStore imageStore,
-            EventScheduler scheduler)
-    {
-        scheduler.unscheduleAllEvents(entity);
-        world.removeEntity(entity);
-    }
-
-
-
-
-
-
-
-
-    public static Optional<Point> findOpenAround(WorldModel world, Point pos) {
-        for (int dy = -ORE_REACH; dy <= ORE_REACH; dy++) {
-            for (int dx = -ORE_REACH; dx <= ORE_REACH; dx++) {
-                Point newPt = new Point(pos.x + dx, pos.y + dy);
-                if (world.withinBounds(newPt) && !world.isOccupied(newPt)) {
-                    return Optional.of(newPt);
-                }
-            }
-        }
-        return Optional.empty();
-    }
-
-
-
-
-
-
-    public static void loadImages(
-            Scanner in, ImageStore imageStore, PApplet screen)
-    {
-        int lineNumber = 0;
-        while (in.hasNextLine()) {
-            try {
-                processImageLine(imageStore.images, in.nextLine(), screen);
-            }
-            catch (NumberFormatException e) {
-                System.out.println(
-                        String.format("Image format error on line %d",
-                                      lineNumber));
-            }
-            lineNumber++;
-        }
-    }
 
     public static void processImageLine(
             Map<String, List<PImage>> images, String line, PApplet screen)
@@ -348,30 +289,9 @@ public final class Functions
     }
 
 
-
-    public static Optional<Entity> findNearest(
-            WorldModel world, Point pos, EntityKind kind)
-    {
-        List<Entity> ofType = new LinkedList<>();
-        for (Entity entity : world.entities) {
-            if (entity.kind == kind) {
-                ofType.add(entity);
-            }
-        }
-
-        return nearestEntity(ofType, pos);
-    }
-
-
-
-
-
-
-
     public static int clamp(int value, int low, int high) {
         return Math.min(high, Math.max(value, low));
     }
-
 
 
     public static Action createAnimationAction(Entity entity, int repeatCount) {

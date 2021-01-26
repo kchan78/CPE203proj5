@@ -43,8 +43,7 @@ public final class Action
                 break;
 
             case QUAKE:
-                Functions.executeQuakeActivity(this.entity, this.world,
-                        this.imageStore, scheduler);
+                this.entity.executeQuakeActivity(this.world, scheduler);
                 break;
 
             case VEIN:

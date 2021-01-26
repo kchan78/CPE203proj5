@@ -17,16 +17,16 @@ public final class Entity
     public int animationPeriod;
 
     public final Random rand = new Random();
-    public final String BLOB_KEY = "blob";
-    public final String BLOB_ID_SUFFIX = " -- blob";
-    public final int BLOB_PERIOD_SCALE = 4;
-    public final int BLOB_ANIMATION_MIN = 50;
-    public final int BLOB_ANIMATION_MAX = 150;
-    public final String ORE_ID_PREFIX = "ore -- ";
-    public final int ORE_CORRUPT_MIN = 20000;
-    public final int ORE_CORRUPT_MAX = 30000;
-    public final String QUAKE_KEY = "quake";
-    public final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
+    public static final String BLOB_KEY = "blob";
+    public static final String BLOB_ID_SUFFIX = " -- blob";
+    public static final int BLOB_PERIOD_SCALE = 4;
+    public static final int BLOB_ANIMATION_MIN = 50;
+    public static final int BLOB_ANIMATION_MAX = 150;
+    public static final String ORE_ID_PREFIX = "ore -- ";
+    public static final int ORE_CORRUPT_MIN = 20000;
+    public static final int ORE_CORRUPT_MAX = 30000;
+    public static final String QUAKE_KEY = "quake";
+    public static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
 
     public Entity(
             EntityKind kind,
@@ -59,7 +59,7 @@ public final class Entity
             EventScheduler scheduler)
     {
         Optional<Entity> fullTarget =
-                Functions.findNearest(world, this.position, EntityKind.BLACKSMITH);
+                world.findNearest(this.position, EntityKind.BLACKSMITH);
 
         if (fullTarget.isPresent() && moveToFull(world,
                 fullTarget.get(), scheduler))
@@ -79,7 +79,7 @@ public final class Entity
             EventScheduler scheduler)
     {
         Optional<Entity> notFullTarget =
-                Functions.findNearest(world, this.position, EntityKind.ORE);
+                world.findNearest(this.position, EntityKind.ORE);
 
         if (!notFullTarget.isPresent() || !moveToNotFull(world,
                 notFullTarget.get(),
@@ -117,7 +117,7 @@ public final class Entity
             EventScheduler scheduler)
     {
         Optional<Entity> blobTarget =
-                Functions.findNearest(world, this.position, EntityKind.VEIN);
+                world.findNearest(this.position, EntityKind.VEIN);
         long nextPeriod = this.actionPeriod;
 
         if (blobTarget.isPresent()) {
@@ -143,7 +143,7 @@ public final class Entity
             ImageStore imageStore,
             EventScheduler scheduler)
     {
-        Optional<Point> openPt = Functions.findOpenAround(world, this.position);
+        Optional<Point> openPt = world.findOpenAround(this.position);
 
         if (openPt.isPresent()) {
             Entity ore = Functions.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
@@ -157,6 +157,14 @@ public final class Entity
         scheduler.scheduleEvent(this,
                 Functions.createActivityAction(this, world, imageStore),
                 this.actionPeriod);
+    }
+
+    public void executeQuakeActivity(
+            WorldModel world,
+            EventScheduler scheduler)
+    {
+        scheduler.unscheduleAllEvents(this);
+        world.removeEntity(this);
     }
 
     public void scheduleActions(

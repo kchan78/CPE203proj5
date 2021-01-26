@@ -1,9 +1,6 @@
 import processing.core.PImage;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public final class WorldModel
 {
@@ -12,6 +9,8 @@ public final class WorldModel
     public Background background[][];
     public Entity occupancy[][];
     public Set<Entity> entities;
+
+    public static final int ORE_REACH = 1;
 
     public WorldModel(int numRows, int numCols, Background defaultBackground) {
         this.numRows = numRows;
@@ -40,6 +39,19 @@ public final class WorldModel
     public boolean isOccupied(Point pos) {
         return withinBounds(pos) && getOccupancyCell(pos) != null;
     }
+
+    public Optional<Point> findOpenAround(Point pos) {
+        for (int dy = -ORE_REACH; dy <= ORE_REACH; dy++) {
+            for (int dx = -ORE_REACH; dx <= ORE_REACH; dx++) {
+                Point newPt = new Point(pos.x + dx, pos.y + dy);
+                if (withinBounds(newPt) && !isOccupied(newPt)) {
+                    return Optional.of(newPt);
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
 
     /*
        Assumes that there is no entity currently occupying the
@@ -102,6 +114,18 @@ public final class WorldModel
         else {
             return Optional.empty();
         }
+    }
+
+    public Optional<Entity> findNearest(Point pos, EntityKind kind)
+    {
+        List<Entity> ofType = new LinkedList<>();
+        for (Entity entity : this.entities) {
+            if (entity.kind == kind) {
+                ofType.add(entity);
+            }
+        }
+
+        return Functions.nearestEntity(ofType, pos);
     }
 
     public Entity getOccupancyCell(Point pos) {

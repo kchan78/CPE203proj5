@@ -5,3 +5,7 @@ I left findOpenAround in Functions because it used the ORE_REACH data and didn't
 
 Ambiguous methods-
 I put moveEntity into WorldModel instead of Entity because it made more sense to me to move the entity within the world rather than entities moving themselves. Also, the if-statement checked conditional WorldModel method and called methods that were in WorldModel.
+
+I moved executeQuakeActivity to Entity even though I was planning to leave it in Functions simply to follow the pattern of all other execute*Activity methods. Even though it didn't access entity data, I thought it would be better organized all together and to keep similar syntax.
+
+I moved findOpenAround
