@@ -1,11 +1,41 @@
-I left nearestEntity() and findNearest() because
+---Methods left in Functions---
+processImageLine() didn't use any class data variables or even passed in any of the created classes as parameters.
 
-I left findOpenAround in Functions because it used the ORE_REACH data and didn't use instance variables from another class except for Point. 
+getImages() didn't use any class data variables or methods and didn't pass in any of the created classes as parameters. Simply returning a List Value from a Map.
 
+setAlpha() didn't use any class data variables or methods and didn't pass in any of the created classes as parameters.
 
-Ambiguous methods-
-I put moveEntity into WorldModel instead of Entity because it made more sense to me to move the entity within the world rather than entities moving themselves. Also, the if-statement checked conditional WorldModel method and called methods that were in WorldModel.
+load() didn't use any class data variables or methods. Only had WorldModel parameter to pass it along to processLine().
 
-I moved executeQuakeActivity to Entity even though I was planning to leave it in Functions simply to follow the pattern of all other execute*Activity methods. Even though it didn't access entity data, I thought it would be better organized all together and to keep similar syntax.
+processLine() didn't use any class data variables or methods. Only called a parse function based off a String parameter and passed along world to parse.
 
-I moved findOpenAround
+parse*() (Background,Miner,Obstacle, etc) all didn't use any instance variables from the classes created. The function mostly depended on a String array. Although it called a WorldModel method, it didn't require any WorldModel data, so didn't belong there.
+
+create*() (AnimationAction, Blacksmith, Ore, etc.) all did not use data from already instantiated classes. They were all just creating new Action or Entity classes. So, they didn't belong in Action or Entity because they were using those classes as a whole by instantiating them, rather than needing data or methods from already made objects.
+
+---Ambiguous Methods---
+
+I put moveEntity into WorldModel instead of Entity because it made more sense to me to move the entity within the world rather than entities moving themselves. Also, the if-statement checked conditional WorldModel method and called methods that were in WorldModel. Similar logic for add/removeEntity(at) methods that entities would be added/removed within a world, they wouldn't do it themselves.
+
+I moved all execute**Activity to Entity nearly all used position data from the Entity class and some used id or actionPeriod as well. They also called methods in the Entity class. Because of the constants they used, I also moved some constants into Entity.
+Note:I also moved executeQuakeActivity to Entity even though I was planning to leave it in Functions simply to follow the pattern of all other execute*Activity methods. Even though it didn't access entity data, I thought it would be better organized all together and to keep similar syntax.
+
+I moved getCurrentImage into both Entity and Background because the original method had an if statement that used data from either Entity or Background based the data type.
+
+transformFull/NotFull into Entity instead of WorldModel since it used a lot of Entity data and called an Entity method whereas it only called WorldModel methods but not data. 
+
+findOpenAround
+
+nexPostitionMiner/OreBlob were both moved to Entity not Point because the methods used data about the position of an entity, not just any position point. So, they should specifically be bundled with Entity.
+
+I move withinBounds to WorldModel and not Point since it was checking whether a Point was inside a World. Since Points are within worlds, it made more sense to me to bundle the method with the higher class.
+
+executeAction to Action because it accessed Action data (kind) to decide what case statement to enter and didnt access any other class data.
+
+scheduleActions to Entity because it accessed Entity kind to decide what case statement to enter. It only used Entity class data and not any other class data like Action, despite method name.
+
+findNearest() to WorldModel since it used the entities instance variable. nearestEntity() also moved as static just since findNearest() called it.
+
+findOpenAround() to WorldModel simply because it used class methods and was checking points within a WorldModel, so it didn't feel like it belonged in Point.
+
+loadImage() to ImageStore instead of left in Functions since it used the images instance variable.

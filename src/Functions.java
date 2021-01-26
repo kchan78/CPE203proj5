@@ -117,8 +117,6 @@ public final class Functions
 
 
 
-
-
     public static void load(
             Scanner in, WorldModel world, ImageStore imageStore)
     {
