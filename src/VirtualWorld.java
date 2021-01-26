@@ -33,14 +33,14 @@ public final class VirtualWorld extends PApplet
     public static final double FASTER_SCALE = 0.25;
     public static final double FASTEST_SCALE = 0.10;
 
-    public static double timeScale = 1.0;
+    private static double timeScale = 1.0;
 
-    public ImageStore imageStore;
-    public WorldModel world;
-    public WorldView view;
-    public EventScheduler scheduler;
+    private ImageStore imageStore;
+    private WorldModel world;
+    private WorldView view;
+    private EventScheduler scheduler;
 
-    public long nextTime;
+    private long nextTime;
 
     public void settings() {
         size(VIEW_WIDTH, VIEW_HEIGHT);
@@ -100,12 +100,12 @@ public final class VirtualWorld extends PApplet
         }
     }
 
-    public static Background createDefaultBackground(ImageStore imageStore) {
+    private Background createDefaultBackground(ImageStore imageStore) {
         return new Background(DEFAULT_IMAGE_NAME,
                               imageStore.getImageList(DEFAULT_IMAGE_NAME));
     }
 
-    public static PImage createImageColored(int width, int height, int color) {
+    private PImage createImageColored(int width, int height, int color) {
         PImage img = new PImage(width, height, RGB);
         img.loadPixels();
         for (int i = 0; i < img.pixels.length; i++) {
@@ -115,7 +115,7 @@ public final class VirtualWorld extends PApplet
         return img;
     }
 
-    private static void loadImages(
+    private void loadImages(
             String filename, ImageStore imageStore, PApplet screen)
     {
         try {
@@ -127,7 +127,7 @@ public final class VirtualWorld extends PApplet
         }
     }
 
-    public static void loadWorld(
+    private void loadWorld(
             WorldModel world, String filename, ImageStore imageStore)
     {
         try {
@@ -139,15 +139,15 @@ public final class VirtualWorld extends PApplet
         }
     }
 
-    public static void scheduleActions(
+    private void scheduleActions(
             WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
-        for (Entity entity : world.entities) {
+        for (Entity entity : world.getEntitySet()) {
             entity.scheduleActions(scheduler, world, imageStore);
         }
     }
 
-    public static void parseCommandLine(String[] args) {
+    private static void parseCommandLine(String[] args) {
         for (String arg : args) {
             switch (arg) {
                 case FAST_FLAG:

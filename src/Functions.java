@@ -273,10 +273,10 @@ public final class Functions
         }
         else {
             Entity nearest = entities.get(0);
-            int nearestDistance = nearest.position.distanceSquared(pos);
+            int nearestDistance = nearest.getPosition().distanceSquared(pos);
 
             for (Entity other : entities) {
-                int otherDistance = other.position.distanceSquared(pos);
+                int otherDistance = other.getPosition().distanceSquared(pos);
 
                 if (otherDistance < nearestDistance) {
                     nearest = other;

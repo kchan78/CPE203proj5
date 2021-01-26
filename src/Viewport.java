@@ -1,9 +1,9 @@
 public final class Viewport
 {
-    public int row;
-    public int col;
-    public int numRows;
-    public int numCols;
+    private int row;
+    private int col;
+    private final int numRows;
+    private final int numCols;
 
     public Viewport(int numRows, int numCols) {
         this.numRows = numRows;
@@ -16,15 +16,31 @@ public final class Viewport
     }
 
     public Point viewportToWorld(int col, int row) {
-        return new Point(col + this.col, row + this.row);
+        return new Point(col + this.getCol(), row + this.getRow());
     }
 
     public Point worldToViewport(int col, int row) {
-        return new Point(col - this.col, row - this.row);
+        return new Point(col - this.getCol(), row - this.getRow());
     }
 
     public boolean contains(Point p) {
-        return p.y >= this.row && p.y < this.row + this.numRows
-                && p.x >= this.col && p.x < this.col + this.numCols;
+        return p.y >= this.getRow() && p.y < this.getRow() + this.getNumRows()
+                && p.x >= this.getCol() && p.x < this.getCol() + this.getNumCols();
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public int getNumRows() {
+        return numRows;
+    }
+
+    public int getNumCols() {
+        return numCols;
     }
 }
