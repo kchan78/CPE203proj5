@@ -9,4 +9,6 @@ public interface EntityMoving {
             WorldModel world,
             Entity target,
             EventScheduler scheduler);
+
+    public void nextImage();
 }

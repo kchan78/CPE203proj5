@@ -18,7 +18,6 @@ public class MinerFull implements Entity, EntityActive, EntityMoving, EntityAnim
             Point position,
             List<PImage> images,
             int resourceLimit,
-            int resourceCount,
             int actionPeriod,
             int animationPeriod)
     {
@@ -27,7 +26,6 @@ public class MinerFull implements Entity, EntityActive, EntityMoving, EntityAnim
         this.images = images;
         this.imageIndex = 0;
         this.resourceLimit = resourceLimit;
-        this.resourceCount = resourceCount;
         this.actionPeriod = actionPeriod;
         this.animationPeriod = animationPeriod;
     }

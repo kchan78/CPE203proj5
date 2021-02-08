@@ -1,5 +1,4 @@
 import processing.core.PImage;
-
 import java.util.List;
 
 public class Blacksmith implements Entity{
@@ -20,11 +19,6 @@ public class Blacksmith implements Entity{
     public PImage getCurrentImage() {
         return (images.get(imageIndex));
     }
-
-    public void nextImage() {
-        this.imageIndex = (this.imageIndex + 1) % this.images.size();
-    }
-
 
     public Point getPosition() {
         return position;
