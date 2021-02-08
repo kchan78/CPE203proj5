@@ -40,9 +40,9 @@ public class MinerFull implements Entity, EntityActive, EntityMoving, EntityAnim
             EventScheduler scheduler)
     {
         Optional<Entity> fullTarget =
-                world.findNearest(this.position, EntityKind.BLACKSMITH);
+                world.findNearest(this.position, Blacksmith.class);
 
-        if (fullTarget.isPresent() && moveToFull(world,
+        if (fullTarget.isPresent() && moveTo(world,
                 fullTarget.get(), scheduler))
         {
             transformFull(world, scheduler, imageStore);
@@ -83,7 +83,7 @@ public class MinerFull implements Entity, EntityActive, EntityMoving, EntityAnim
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        Entity miner = Factory.createMinerNotFull(this.id, this.resourceLimit,
+        EntityActive miner = Factory.createMinerNotFull(this.id, this.resourceLimit,
                 this.position, this.actionPeriod,
                 this.animationPeriod,
                 this.images);
@@ -91,7 +91,7 @@ public class MinerFull implements Entity, EntityActive, EntityMoving, EntityAnim
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
-        world.addEntity(miner);
+        world.addEntity((Entity)miner);
         miner.scheduleActions(scheduler, world, imageStore);
     }
 
@@ -118,11 +118,11 @@ public class MinerFull implements Entity, EntityActive, EntityMoving, EntityAnim
             Entity target,
             EventScheduler scheduler)
     {
-        if (this.position.adjacent(target.position)) {
+        if (this.position.adjacent(target.getPosition())) {
             return true;
         }
         else {
-            Point nextPos = this.nextPosition(world, target.position);
+            Point nextPos = this.nextPosition(world, target.getPosition());
 
             if (!this.position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);

@@ -3,7 +3,7 @@ import java.util.*;
 public final class EventScheduler
 {
     private PriorityQueue<Event> eventQueue;
-    private Map<Entity, List<Event>> pendingEvents;
+    private Map<EntityActive, List<Event>> pendingEvents;
     private final double timeScale;
 
     public EventScheduler(double timeScale) {
@@ -13,7 +13,7 @@ public final class EventScheduler
     }
 
     public void scheduleEvent(
-            Entity entity,
+            EntityActive entity,
             Action action,
             long afterPeriod)
     {

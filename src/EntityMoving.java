@@ -10,5 +10,4 @@ public interface EntityMoving {
             Entity target,
             EventScheduler scheduler);
 
-    public void nextImage();
 }

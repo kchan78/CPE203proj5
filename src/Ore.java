@@ -45,14 +45,14 @@ public class Ore implements Entity, EntityActive {
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
-        Entity blob = Factory.createOreBlob(this.id + BLOB_ID_SUFFIX, pos,
+        EntityActive blob = Factory.createOreBlob(this.id + BLOB_ID_SUFFIX, pos,
                 this.actionPeriod / BLOB_PERIOD_SCALE,
                 BLOB_ANIMATION_MIN + rand.nextInt(
                         BLOB_ANIMATION_MAX
                                 - BLOB_ANIMATION_MIN),
                 imageStore.getImageList(BLOB_KEY));
 
-        world.addEntity(blob);
+        world.addEntity((Entity) blob);
         blob.scheduleActions(scheduler, world, imageStore);
     }
 

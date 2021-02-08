@@ -12,4 +12,5 @@ public interface EntityActive {
             WorldModel world,
             ImageStore imageStore);
 
+    public void nextImage();
 }

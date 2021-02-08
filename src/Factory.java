@@ -7,12 +7,12 @@ public class Factory {
     public static final int QUAKE_ACTION_PERIOD = 1100;
     public static final int QUAKE_ANIMATION_PERIOD = 100;
 
-    public static Action createAnimationAction(Entity entity, int repeatCount) {
+    public static Action createAnimationAction(EntityActive entity, int repeatCount) {
         return new Animation(entity, null, null, repeatCount);
     }
 
     public static Action createActivityAction(
-            Entity entity, WorldModel world, ImageStore imageStore)
+            EntityActive entity, WorldModel world, ImageStore imageStore)
     {
         return new Activity(entity, world, imageStore, 0);
     }
