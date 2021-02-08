@@ -8,13 +8,13 @@ public class Factory {
     public static final int QUAKE_ANIMATION_PERIOD = 100;
 
     public static Action createAnimationAction(EntityActive entity, int repeatCount) {
-        return new Animation(entity, null, null, repeatCount);
+        return new Animation(entity, repeatCount);
     }
 
     public static Action createActivityAction(
             EntityActive entity, WorldModel world, ImageStore imageStore)
     {
-        return new Activity(entity, world, imageStore, 0);
+        return new Activity(entity, world, imageStore);
     }
 
     public static Blacksmith createBlacksmith(
