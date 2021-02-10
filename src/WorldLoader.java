@@ -6,7 +6,7 @@ import java.util.Scanner;
 import processing.core.PImage;
 import processing.core.PApplet;
 
-public final class Functions
+public final class WorldLoader
 {
 
     public static final int COLOR_MASK = 0xffffff;

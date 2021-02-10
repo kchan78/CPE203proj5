@@ -45,7 +45,7 @@ public class Vein implements Entity, EntityActive {
             EntityActive ore = Factory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
                     ORE_CORRUPT_MIN + rand.nextInt(
                             ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
-                    imageStore.getImageList(Functions.ORE_KEY));
+                    imageStore.getImageList(WorldLoader.ORE_KEY));
             world.addEntity((Entity)ore);
             ore.scheduleActions(scheduler, world, imageStore);
         }
