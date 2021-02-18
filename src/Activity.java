@@ -16,15 +16,9 @@ public class Activity implements Action {
 
     public void executeAction(EventScheduler scheduler)
     {
-     //   if (this.entity instanceof EntityActive)
-        ((EntityActive) entity).executeActivity(this.world, imageStore, scheduler);
- /*
-        else
-            throw new UnsupportedOperationException(String.format(
-                    "executeActivityAction not supported for %s",
-                    this.entity.getClass()));
 
- */
+        entity.executeActivity(this.world, imageStore, scheduler);
+
     }
 
 }

@@ -145,4 +145,5 @@ public class MinerFull implements Entity, EntityActive, EntityMoving, EntityAnim
         this.position = point;
     }
 
+  //  public int getActionPeriod() {return actionPeriod;}
 }

@@ -7,10 +7,11 @@ public interface EntityActive {
             ImageStore imageStore,
             EventScheduler scheduler);
 
+//    public int getActionPeriod();
+
     public void scheduleActions(
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore);
 
-    public void nextImage();
 }

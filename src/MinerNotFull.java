@@ -155,4 +155,6 @@ public class MinerNotFull implements Entity, EntityActive, EntityMoving, EntityA
     public void setPosition(Point point) {
         this.position = point;
     }
+
+ //   public int getActionPeriod() {return actionPeriod;}
 }

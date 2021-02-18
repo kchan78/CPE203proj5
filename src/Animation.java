@@ -1,10 +1,10 @@
 public class Animation implements Action {
 
-    private final EntityActive entity;
+    private final EntityAnimated entity;
     private final int repeatCount;
 
     public Animation(
-            EntityActive entity,
+            EntityAnimated entity,
             int repeatCount)
     {
         this.entity = entity;
@@ -16,11 +16,11 @@ public class Animation implements Action {
         this.entity.nextImage();
 
         if (this.repeatCount != 1) {
-            scheduler.scheduleEvent(entity,
+            scheduler.scheduleEvent((EntityActive) entity,
                     Factory.createAnimationAction(this.entity,
                             Math.max(this.repeatCount - 1,
                                     0)),
-                    ((EntityAnimated) entity).getAnimationPeriod());
+                    (entity).getAnimationPeriod());
         }
     }
 

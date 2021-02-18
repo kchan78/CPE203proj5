@@ -70,4 +70,6 @@ public class Quake implements Entity, EntityActive, EntityAnimated {
     public void setPosition(Point point) {
         this.position = point;
     }
+
+ //   public int getActionPeriod() {return actionPeriod;}
 }

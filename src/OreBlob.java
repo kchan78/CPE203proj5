@@ -141,4 +141,6 @@ public class OreBlob implements Entity, EntityActive, EntityMoving, EntityAnimat
     public void setPosition(Point point) {
         this.position = point;
     }
+
+ //   public int getActionPeriod() {return actionPeriod;}
 }

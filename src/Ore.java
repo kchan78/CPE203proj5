@@ -67,10 +67,6 @@ public class Ore implements Entity, EntityActive {
 
     }
 
-    public void nextImage() {
-        this.imageIndex = (this.imageIndex + 1) % this.images.size();
-    }
-
     public Point getPosition() {
         return position;
     }
@@ -79,4 +75,5 @@ public class Ore implements Entity, EntityActive {
         this.position = point;
     }
 
+ //   public int getActionPeriod() {return actionPeriod;}
 }

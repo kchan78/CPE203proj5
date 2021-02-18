@@ -424,7 +424,7 @@
           <y:Geometry height="137.0" width="164.0" x="375.56800865503243" y="-585.8793714111904"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="73.36083984375" x="45.319580078125" xml:space="preserve" y="58.536865234375">Blacksmith<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="73.36083984375" x="45.319580078125" xml:space="preserve" y="3.0">Blacksmith<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">-position: Point
 -images: List&lt;PImage&gt;
@@ -461,7 +461,7 @@
 +setPosition() 
 +executeActivity()
 +scheduleActions() 
-+nextImage() 
+
 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -518,7 +518,7 @@
 +setPosition() 
 +executeActivity()
 +scheduleActions() 
-+nextImage() 
+
 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -641,7 +641,7 @@
             <y:AttributeLabel xml:space="preserve"/>
             <y:MethodLabel xml:space="preserve">+executeActivity()
 +scheduleActions() 
-+nextImage() 
+
 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -667,13 +667,14 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="85.43157894736851" width="149.62088421052613" x="1576.112505263158" y="-314.9844459560491"/>
+          <y:Geometry height="99.36200308771936" width="149.62088421052613" x="1576.112505263158" y="-314.9844459560491"/>
           <y:Fill color="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="99.341796875" x="25.139543667763064" xml:space="preserve" y="26.701171875">EntityAnimated<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="Interface" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve"/>
-            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int  </y:MethodLabel>
+            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int  
++nextImage() </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
