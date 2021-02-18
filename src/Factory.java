@@ -3,7 +3,6 @@ import java.util.List;
 
 public class Factory {
 
-    public static final String QUAKE_ID = "quake";
     public static final int QUAKE_ACTION_PERIOD = 1100;
     public static final int QUAKE_ANIMATION_PERIOD = 100;
 
@@ -17,10 +16,9 @@ public class Factory {
         return new Activity(entity, world, imageStore);
     }
 
-    public static Blacksmith createBlacksmith(
-            String id, Point position, List<PImage> images)
+    public static Blacksmith createBlacksmith(String id, Point position, List<PImage> images)
     {
-        return new Blacksmith(position, images);
+        return new Blacksmith(id, position, images);
     }
 
     public static MinerFull createMinerFull(
@@ -51,7 +49,7 @@ public class Factory {
     public static Obstacle createObstacle(
             String id, Point position, List<PImage> images)
     {
-        return new Obstacle(position, images);
+        return new Obstacle(id, position, images);
     }
 
     public static Ore createOre(
@@ -61,7 +59,7 @@ public class Factory {
     }
 
     public static OreBlob createOreBlob(
-            String id,
+//            String id,
             Point position,
             int actionPeriod,
             int animationPeriod,
@@ -73,7 +71,7 @@ public class Factory {
     public static Quake createQuake(
             Point position, List<PImage> images)
     {
-        return new Quake(QUAKE_ID, position, images,
+        return new Quake(position, images,
                 QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
     }
 

@@ -2,13 +2,9 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Random;
 
-public class Ore implements Entity, EntityActive {
+public class Ore extends ActiveEntity {
 
-    private final String id;
-    private Point position;
-    private final List<PImage> images;
-    private int imageIndex;
-    private final int actionPeriod;
+ //   private final String id;
 
     private final Random rand = new Random();
     private static final String BLOB_KEY = "blob";
@@ -23,15 +19,8 @@ public class Ore implements Entity, EntityActive {
             List<PImage> images,
             int actionPeriod)
     {
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.actionPeriod = actionPeriod;
-    }
-
-    public PImage getCurrentImage() {
-        return (images.get(imageIndex));
+        super(position, images, actionPeriod);
+  //      this.id = id;
     }
 
 
@@ -40,13 +29,15 @@ public class Ore implements Entity, EntityActive {
             ImageStore imageStore,
             EventScheduler scheduler)
     {
-        Point pos = this.position;
+        Point pos = getPosition();
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
-        EntityActive blob = Factory.createOreBlob(this.id + BLOB_ID_SUFFIX, pos,
-                this.actionPeriod / BLOB_PERIOD_SCALE,
+        EntityActive blob = Factory.createOreBlob(
+//                this.id + BLOB_ID_SUFFIX,
+                pos,
+                getActionPeriod() / BLOB_PERIOD_SCALE,
                 BLOB_ANIMATION_MIN + rand.nextInt(
                         BLOB_ANIMATION_MAX
                                 - BLOB_ANIMATION_MIN),
@@ -63,17 +54,8 @@ public class Ore implements Entity, EntityActive {
     {
         scheduler.scheduleEvent(this,
                 Factory.createActivityAction(this, world, imageStore),
-                this.actionPeriod);
+                getActionPeriod());
 
     }
 
-    public Point getPosition() {
-        return position;
-    }
-
-    public void setPosition(Point point) {
-        this.position = point;
-    }
-
- //   public int getActionPeriod() {return actionPeriod;}
 }

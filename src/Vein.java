@@ -4,13 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class Vein implements Entity, EntityActive {
+public class Vein extends ActiveEntity {
 
     private final String id;
-    private Point position;
-    private final List<PImage> images;
-    private int imageIndex;
-    private final int actionPeriod;
 
     private final Random rand = new Random();
     private static final String ORE_ID_PREFIX = "ore -- ";
@@ -23,23 +19,17 @@ public class Vein implements Entity, EntityActive {
             List<PImage> images,
             int actionPeriod)
     {
+        super(position, images, actionPeriod);
         this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.actionPeriod = actionPeriod;
     }
 
-    public PImage getCurrentImage() {
-        return (images.get(imageIndex));
-    }
 
     public void executeActivity(
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
     {
-        Optional<Point> openPt = world.findOpenAround(this.position);
+        Optional<Point> openPt = world.findOpenAround(getPosition());
 
         if (openPt.isPresent()) {
             EntityActive ore = Factory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
@@ -52,7 +42,7 @@ public class Vein implements Entity, EntityActive {
 
         scheduler.scheduleEvent(this,
                 Factory.createActivityAction(this, world, imageStore),
-                this.actionPeriod);
+                getActionPeriod());
     }
 
     public void scheduleActions(
@@ -62,17 +52,8 @@ public class Vein implements Entity, EntityActive {
     {
         scheduler.scheduleEvent(this,
                 Factory.createActivityAction(this, world, imageStore),
-                this.actionPeriod);
+                getActionPeriod());
     }
 
-    public Point getPosition() {
-        return position;
-    }
-
-    public void setPosition(Point point) {
-        this.position = point;
-    }
-
-  //  public int getActionPeriod() {return actionPeriod;}
 }
 

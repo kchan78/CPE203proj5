@@ -3,13 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class OreBlob implements Entity, EntityActive, EntityMoving, EntityAnimated {
-
-    private Point position;
-    private final List<PImage> images;
-    private int imageIndex;
-    private final int actionPeriod;
-    private final int animationPeriod;
+public class OreBlob extends AnimatedEntity implements EntityMoving {
 
     private static final String QUAKE_KEY = "quake";
 
@@ -19,15 +13,7 @@ public class OreBlob implements Entity, EntityActive, EntityMoving, EntityAnimat
             int actionPeriod,
             int animationPeriod)
     {
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
-    }
-
-    public PImage getCurrentImage() {
-        return (images.get(imageIndex));
+        super(position, images, actionPeriod, animationPeriod);
     }
 
     public void executeActivity(
@@ -36,8 +22,8 @@ public class OreBlob implements Entity, EntityActive, EntityMoving, EntityAnimat
             EventScheduler scheduler)
     {
         Optional<Entity> blobTarget =
-                world.findNearest(this.position, Vein.class);
-        long nextPeriod = this.actionPeriod;
+                world.findNearest(getPosition(), Vein.class);
+        long nextPeriod = getActionPeriod();
 
         if (blobTarget.isPresent()) {
             Point tgtPos = blobTarget.get().getPosition();
@@ -47,7 +33,7 @@ public class OreBlob implements Entity, EntityActive, EntityMoving, EntityAnimat
                         imageStore.getImageList(QUAKE_KEY));
 
                 world.addEntity((Entity)quake);
-                nextPeriod += this.actionPeriod;
+                nextPeriod += getActionPeriod();
                 quake.scheduleActions(scheduler, world, imageStore);
             }
         }
@@ -66,42 +52,33 @@ public class OreBlob implements Entity, EntityActive, EntityMoving, EntityAnimat
     {
         scheduler.scheduleEvent(this,
                 Factory.createActivityAction(this, world, imageStore),
-                this.actionPeriod);
+                getActionPeriod());
         scheduler.scheduleEvent(this,
                 Factory.createAnimationAction(this, 0),
                 getAnimationPeriod());
 
     }
-
-
-    public int getAnimationPeriod() {
-        return this.animationPeriod;
-    }
-
-    public void nextImage() {
-        this.imageIndex = (this.imageIndex + 1) % this.images.size();
-    }
-
+    
 
     public Point nextPosition(
             WorldModel world, Point destPos)
     {
-        int horiz = Integer.signum(destPos.x - this.position.x);
-        Point newPos = new Point(this.position.x + horiz, this.position.y);
+        int horiz = Integer.signum(destPos.x - getPosition().x);
+        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
 
         Optional<Entity> occupant = world.getOccupant(newPos);
 
         if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
                 == Ore.class)))
         {
-            int vert = Integer.signum(destPos.y - this.position.y);
-            newPos = new Point(this.position.x, this.position.y + vert);
+            int vert = Integer.signum(destPos.y - getPosition().y);
+            newPos = new Point(getPosition().x, getPosition().y + vert);
             occupant = world.getOccupant(newPos);
 
             if (vert == 0 || (occupant.isPresent() && !(occupant.get().getClass()
                     == Ore.class)))
             {
-                newPos = this.position;
+                newPos = getPosition();
             }
         }
 
@@ -114,7 +91,7 @@ public class OreBlob implements Entity, EntityActive, EntityMoving, EntityAnimat
             Entity target,
             EventScheduler scheduler)
     {
-        if (this.position.adjacent(target.getPosition())) {
+        if (getPosition().adjacent(target.getPosition())) {
             world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
             return true;
@@ -122,7 +99,7 @@ public class OreBlob implements Entity, EntityActive, EntityMoving, EntityAnimat
         else {
             Point nextPos = this.nextPosition(world, target.getPosition());
 
-            if (!this.position.equals(nextPos)) {
+            if (!getPosition().equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent()) {
                     scheduler.unscheduleAllEvents(occupant.get());
@@ -134,13 +111,4 @@ public class OreBlob implements Entity, EntityActive, EntityMoving, EntityAnimat
         }
     }
 
-    public Point getPosition() {
-        return position;
-    }
-
-    public void setPosition(Point point) {
-        this.position = point;
-    }
-
- //   public int getActionPeriod() {return actionPeriod;}
 }
