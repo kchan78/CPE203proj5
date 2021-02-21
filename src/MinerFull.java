@@ -63,7 +63,7 @@ public class MinerFull extends AnimatedEntity implements EntityMoving {
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        EntityActive miner = Factory.createMinerNotFull(this.id, this.resourceLimit,
+        ActiveEntity miner = Factory.createMinerNotFull(this.id, this.resourceLimit,
                  getPosition(), getActionPeriod(),
                 getAnimationPeriod(),
                 getImages());

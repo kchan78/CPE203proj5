@@ -29,7 +29,7 @@ public class OreBlob extends AnimatedEntity implements EntityMoving {
             Point tgtPos = blobTarget.get().getPosition();
 
             if (moveTo(world, blobTarget.get(), scheduler)) {
-                EntityActive quake = Factory.createQuake(tgtPos,
+                ActiveEntity quake = Factory.createQuake(tgtPos,
                         imageStore.getImageList(QUAKE_KEY));
 
                 world.addEntity((Entity)quake);

@@ -1,10 +1,10 @@
 public class Animation implements Action {
 
-    private final EntityAnimated entity;
+    private final AnimatedEntity entity;
     private final int repeatCount;
 
     public Animation(
-            EntityAnimated entity,
+            AnimatedEntity entity,
             int repeatCount)
     {
         this.entity = entity;
@@ -16,7 +16,7 @@ public class Animation implements Action {
         this.entity.nextImage();
 
         if (this.repeatCount != 1) {
-            scheduler.scheduleEvent((EntityActive) entity,
+            scheduler.scheduleEvent((ActiveEntity) entity,
                     Factory.createAnimationAction(this.entity,
                             Math.max(this.repeatCount - 1,
                                     0)),

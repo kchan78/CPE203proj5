@@ -2,7 +2,7 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public abstract class ActiveEntity extends EntityClass implements EntityActive {
+public abstract class ActiveEntity extends Entity {
 
     private final int actionPeriod;
 

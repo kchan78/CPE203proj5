@@ -34,7 +34,7 @@ public class Ore extends ActiveEntity {
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
-        EntityActive blob = Factory.createOreBlob(
+        ActiveEntity blob = Factory.createOreBlob(
 //                this.id + BLOB_ID_SUFFIX,
                 pos,
                 getActionPeriod() / BLOB_PERIOD_SCALE,

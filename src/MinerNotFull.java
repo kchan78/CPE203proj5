@@ -63,7 +63,7 @@ public class MinerNotFull extends AnimatedEntity implements EntityMoving {
             ImageStore imageStore)
     {
         if (this.resourceCount >= this.resourceLimit) {
-            EntityActive miner = Factory.createMinerFull(this.id, this.resourceLimit,
+            ActiveEntity miner = Factory.createMinerFull(this.id, this.resourceLimit,
                     getPosition(), getActionPeriod(),
                     getAnimationPeriod(),
                     getImages());

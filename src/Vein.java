@@ -32,7 +32,7 @@ public class Vein extends ActiveEntity {
         Optional<Point> openPt = world.findOpenAround(getPosition());
 
         if (openPt.isPresent()) {
-            EntityActive ore = Factory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
+            ActiveEntity ore = Factory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
                     ORE_CORRUPT_MIN + rand.nextInt(
                             ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
                     imageStore.getImageList(WorldLoader.ORE_KEY));
