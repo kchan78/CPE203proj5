@@ -28,4 +28,5 @@ public abstract class ActiveEntity extends Entity {
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore);
+
 }

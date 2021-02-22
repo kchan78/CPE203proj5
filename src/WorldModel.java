@@ -55,7 +55,7 @@ public final class WorldModel
         }
     }
 
-    public void moveEntity(Entity entity, Point pos) {
+    public void moveEntity(AnimatedEntity entity, Point pos) {
         Point oldPos = entity.getPosition();
         if (withinBounds(pos) && !pos.equals(oldPos)) {
             setOccupancyCell(oldPos, null);
@@ -65,7 +65,7 @@ public final class WorldModel
         }
     }
 
-    public  void removeEntity(Entity entity) {
+    public void removeEntity(Entity entity) {
         removeEntityAt(entity.getPosition());
     }
 
@@ -75,7 +75,9 @@ public final class WorldModel
 
             /* This moves the entity just outside of the grid for
              * debugging purposes. */
-            entity.setPosition(new Point(-1, -1));
+//            if (entity instanceof ActiveEntity)
+//                ((ActiveEntity)entity).setPosition(new Point(-1, -1));
+
             this.entities.remove(entity);
             setOccupancyCell(pos, null);
         }

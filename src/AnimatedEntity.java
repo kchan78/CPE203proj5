@@ -6,6 +6,7 @@ import java.util.List;
 
 public abstract class AnimatedEntity extends ActiveEntity{
     private final int animationPeriod;
+    private int imageIndex;
 
     public AnimatedEntity(
 //                        String id,
@@ -19,14 +20,25 @@ public abstract class AnimatedEntity extends ActiveEntity{
 
         this.animationPeriod = animationPeriod;
 
+        this.imageIndex = 0;
     }
 
-     public int getAnimationPeriod() {
+    @Override
+    public PImage getCurrentImage() {
+        return images.get(imageIndex);
+    }
+
+ //   public int getCurrentImageHelper() {return imageIndex;}
+
+    public int getAnimationPeriod() {
         return this.animationPeriod;
     }
 
     public void nextImage() {
-        super.setImageIndex((getImageIndex() + 1) % getImages().size()) ;
+        imageIndex = (imageIndex + 1) % images.size() ;
     }
 
+    public void setPosition(Point point) {
+        this.position = point;
+    }
 }

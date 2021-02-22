@@ -225,9 +225,9 @@ public final class WorldLoader
         if (properties.length == SMITH_NUM_PROPERTIES) {
             Point pt = new Point(Integer.parseInt(properties[SMITH_COL]),
                                  Integer.parseInt(properties[SMITH_ROW]));
-            Entity entity = Factory.createBlacksmith(properties[SMITH_ID], pt,
-                                             imageStore.getImageList(
-                                                          SMITH_KEY));
+            Entity entity = Factory.createBlacksmith(//properties[SMITH_ID],
+                                            pt,
+                                            imageStore.getImageList(SMITH_KEY));
             world.tryAddEntity(entity);
         }
 

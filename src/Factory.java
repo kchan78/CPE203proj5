@@ -16,9 +16,10 @@ public class Factory {
         return new Activity(entity, world, imageStore);
     }
 
-    public static Blacksmith createBlacksmith(String id, Point position, List<PImage> images)
+    public static Blacksmith createBlacksmith(//String id,
+                                              Point position, List<PImage> images)
     {
-        return new Blacksmith(id, position, images);
+        return new Blacksmith(position, images);
     }
 
     public static MinerFull createMinerFull(
