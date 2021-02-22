@@ -7,12 +7,10 @@ public abstract class ActiveEntity extends Entity {
     private final int actionPeriod;
 
     public ActiveEntity(
-//                      String id,
                         Point position,
                         List<PImage> images,
                         int actionPeriod) {
 
-//        super(id, position, images);
         super(position, images);
         this.actionPeriod = actionPeriod;
     }

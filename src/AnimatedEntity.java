@@ -9,13 +9,11 @@ public abstract class AnimatedEntity extends ActiveEntity{
     private int imageIndex;
 
     public AnimatedEntity(
-//                        String id,
                           Point position,
                           List<PImage> images,
                           int actionPeriod,
                           int animationPeriod) {
 
-//        super(id, position, images, actionPeriod);
         super(position, images, actionPeriod);
 
         this.animationPeriod = animationPeriod;
@@ -38,5 +36,17 @@ public abstract class AnimatedEntity extends ActiveEntity{
         imageIndex = (imageIndex + 1) % getImages().size() ;
     }
 
+    public void scheduleActions(
+            EventScheduler scheduler,
+            WorldModel world,
+            ImageStore imageStore) {
+        scheduler.scheduleEvent(this,
+                Factory.createActivityAction(this, world, imageStore),
+                getActionPeriod());
+        scheduler.scheduleEvent(this,
+                Factory.createAnimationAction(this, scheduleActionsHelper()),
+                getAnimationPeriod());
+    }
 
+    abstract int scheduleActionsHelper();
 }

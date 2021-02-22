@@ -3,7 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class MinerNotFull extends AnimatedEntity implements EntityMoving {
+public class MinerNotFull extends EntityMoving {
 
     private final String id;
     private final int resourceLimit;
@@ -43,19 +43,6 @@ public class MinerNotFull extends AnimatedEntity implements EntityMoving {
         }
     }
 
-    public void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-        scheduler.scheduleEvent(this,
-                Factory.createActivityAction(this, world, imageStore),
-                getActionPeriod());
-        scheduler.scheduleEvent(this,
-                Factory.createAnimationAction(this, 0),
-                getAnimationPeriod());
-
-    }
 
     private boolean transformNotFull(
             WorldModel world,

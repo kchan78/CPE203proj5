@@ -3,7 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class OreBlob extends AnimatedEntity implements EntityMoving {
+public class OreBlob extends EntityMoving {
 
     private static final String QUAKE_KEY = "quake";
 
@@ -41,22 +41,6 @@ public class OreBlob extends AnimatedEntity implements EntityMoving {
         scheduler.scheduleEvent(this,
                 Factory.createActivityAction(this, world, imageStore),
                 nextPeriod);
-    }
-
-
-
-    public void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-        scheduler.scheduleEvent(this,
-                Factory.createActivityAction(this, world, imageStore),
-                getActionPeriod());
-        scheduler.scheduleEvent(this,
-                Factory.createAnimationAction(this, 0),
-                getAnimationPeriod());
-
     }
     
 
