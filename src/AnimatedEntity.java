@@ -25,20 +25,18 @@ public abstract class AnimatedEntity extends ActiveEntity{
 
     @Override
     public PImage getCurrentImage() {
-        return images.get(imageIndex);
+        return getImages().get(imageIndex);
     }
 
  //   public int getCurrentImageHelper() {return imageIndex;}
 
-    public int getAnimationPeriod() {
-        return this.animationPeriod;
+    protected int getAnimationPeriod() {
+        return animationPeriod;
     }
 
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % images.size() ;
+    protected void nextImage() {
+        imageIndex = (imageIndex + 1) % getImages().size() ;
     }
 
-    public void setPosition(Point point) {
-        this.position = point;
-    }
+
 }

@@ -66,7 +66,7 @@ public class MinerNotFull extends AnimatedEntity implements EntityMoving {
             ActiveEntity miner = Factory.createMinerFull(this.id, this.resourceLimit,
                     getPosition(), getActionPeriod(),
                     getAnimationPeriod(),
-                    images);
+                    getImages());
 
             world.removeEntity(this);
             scheduler.unscheduleAllEvents(this);

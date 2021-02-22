@@ -22,7 +22,7 @@ public abstract class ActiveEntity extends Entity {
             ImageStore imageStore,
             EventScheduler scheduler);
 
-    public int getActionPeriod() { return actionPeriod; }
+    protected int getActionPeriod() { return actionPeriod; }
 
     public abstract void scheduleActions(
             EventScheduler scheduler,
