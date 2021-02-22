@@ -2,13 +2,10 @@ import processing.core.PImage;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
-public class Vein extends ActiveEntity {
 
+public class Vein extends DisappearingEntity {
     private final String id;
-
-    private final Random rand = new Random();
     private static final String ORE_ID_PREFIX = "ore -- ";
     private static final int ORE_CORRUPT_MIN = 20000;
     private static final int ORE_CORRUPT_MAX = 30000;
@@ -33,10 +30,10 @@ public class Vein extends ActiveEntity {
 
         if (openPt.isPresent()) {
             ActiveEntity ore = Factory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
-                    ORE_CORRUPT_MIN + rand.nextInt(
+                    ORE_CORRUPT_MIN + getRandom().nextInt(
                             ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
                     imageStore.getImageList(WorldLoader.ORE_KEY));
-            world.addEntity((Entity)ore);
+            world.addEntity(ore);
             ore.scheduleActions(scheduler, world, imageStore);
         }
 
@@ -45,15 +42,6 @@ public class Vein extends ActiveEntity {
                 getActionPeriod());
     }
 
-    public void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-        scheduler.scheduleEvent(this,
-                Factory.createActivityAction(this, world, imageStore),
-                getActionPeriod());
-    }
 
 }
 

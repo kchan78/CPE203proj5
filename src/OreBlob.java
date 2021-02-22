@@ -32,7 +32,7 @@ public class OreBlob extends EntityMoving {
                 ActiveEntity quake = Factory.createQuake(tgtPos,
                         imageStore.getImageList(QUAKE_KEY));
 
-                world.addEntity((Entity)quake);
+                world.addEntity(quake);
                 nextPeriod += getActionPeriod();
                 quake.scheduleActions(scheduler, world, imageStore);
             }
@@ -42,14 +42,9 @@ public class OreBlob extends EntityMoving {
                 Factory.createActivityAction(this, world, imageStore),
                 nextPeriod);
     }
-    
 
-    public Point nextPosition(
-            WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.x - getPosition().x);
-        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
 
+    public Point nextPositionHelper(WorldModel world, Point destPos, Point newPos, int horiz) {
         Optional<Entity> occupant = world.getOccupant(newPos);
 
         if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
@@ -65,34 +60,17 @@ public class OreBlob extends EntityMoving {
                 newPos = getPosition();
             }
         }
-
         return newPos;
     }
 
 
-    public boolean moveTo(
+    public void moveToHelper(
             WorldModel world,
             Entity target,
-            EventScheduler scheduler)
-    {
-        if (getPosition().adjacent(target.getPosition())) {
-            world.removeEntity(target);
-            scheduler.unscheduleAllEvents(target);
-            return true;
-        }
-        else {
-            Point nextPos = this.nextPosition(world, target.getPosition());
+            EventScheduler scheduler){
 
-            if (!getPosition().equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents(occupant.get());
-                }
-
-                world.moveEntity(this, nextPos);
-            }
-            return false;
-        }
+        world.removeEntity(target);
+        scheduler.unscheduleAllEvents(target);
     }
 
 }

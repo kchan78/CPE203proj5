@@ -3,10 +3,8 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class MinerNotFull extends EntityMoving {
+public class MinerNotFull extends Miners {
 
-    private final String id;
-    private final int resourceLimit;
     private int resourceCount;
 
     public MinerNotFull(
@@ -18,9 +16,7 @@ public class MinerNotFull extends EntityMoving {
             int actionPeriod,
             int animationPeriod)
     {
-        super(position, images, actionPeriod, animationPeriod);
-        this.id = id;
-        this.resourceLimit = resourceLimit;
+        super(position, images, actionPeriod, animationPeriod, id, resourceLimit);
         this.resourceCount = resourceCount;
     }
 
@@ -49,8 +45,8 @@ public class MinerNotFull extends EntityMoving {
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        if (this.resourceCount >= this.resourceLimit) {
-            ActiveEntity miner = Factory.createMinerFull(this.id, this.resourceLimit,
+        if (this.resourceCount >= getResourceLimit()) {
+            ActiveEntity miner = Factory.createMinerFull(getId(), getResourceLimit(),
                     getPosition(), getActionPeriod(),
                     getAnimationPeriod(),
                     getImages());
@@ -58,7 +54,7 @@ public class MinerNotFull extends EntityMoving {
             world.removeEntity(this);
             scheduler.unscheduleAllEvents(this);
 
-            world.addEntity((Entity)miner);
+            world.addEntity(miner);
             miner.scheduleActions(scheduler, world, imageStore);
 
             return true;
@@ -67,50 +63,13 @@ public class MinerNotFull extends EntityMoving {
         return false;
     }
 
-    public Point nextPosition(
-            WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.x - getPosition().x);
-        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
-
-        if (horiz == 0 || world.isOccupied(newPos)) {
-            int vert = Integer.signum(destPos.y - getPosition().y);
-            newPos = new Point(getPosition().x, getPosition().y + vert);
-
-            if (vert == 0 || world.isOccupied(newPos)) {
-                newPos = getPosition();
-            }
-        }
-
-        return newPos;
-    }
-
-    public boolean moveTo(
+    public void moveToHelper(
             WorldModel world,
             Entity target,
-            EventScheduler scheduler)
-    {
-        if (getPosition().adjacent(target.getPosition())) {
-            this.resourceCount += 1;
-            world.removeEntity(target);
-            scheduler.unscheduleAllEvents(target);
-
-            return true;
-        }
-        else {
-            Point nextPos = this.nextPosition(world, target.getPosition());
-
-            if (!getPosition().equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents(occupant.get());
-                }
-
-                world.moveEntity(this, nextPos);
-            }
-            return false;
-        }
+            EventScheduler scheduler){
+        this.resourceCount += 1;
+        world.removeEntity(target);
+        scheduler.unscheduleAllEvents(target);
     }
-
 
 }

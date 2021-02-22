@@ -56,7 +56,7 @@ public class Factory {
     public static Ore createOre(
             String id, Point position, int actionPeriod, List<PImage> images)
     {
-        return new Ore(id, position, images, actionPeriod);
+        return new Ore(position, images, actionPeriod);
     }
 
     public static OreBlob createOreBlob(
