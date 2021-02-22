@@ -10,12 +10,12 @@ public class Ore extends DisappearingEntity {
     private static final int BLOB_ANIMATION_MAX = 150;
 
     public Ore(
-//            String id,
+            String id,
             Point position,
             List<PImage> images,
             int actionPeriod)
     {
-        super(position, images, actionPeriod);
+        super(id, position, images, actionPeriod);
     }
 
 

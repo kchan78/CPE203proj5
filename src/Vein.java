@@ -5,7 +5,7 @@ import java.util.Optional;
 
 
 public class Vein extends DisappearingEntity {
-    private final String id;
+
     private static final String ORE_ID_PREFIX = "ore -- ";
     private static final int ORE_CORRUPT_MIN = 20000;
     private static final int ORE_CORRUPT_MAX = 30000;
@@ -16,8 +16,7 @@ public class Vein extends DisappearingEntity {
             List<PImage> images,
             int actionPeriod)
     {
-        super(position, images, actionPeriod);
-        this.id = id;
+        super(id, position, images, actionPeriod);
     }
 
 
@@ -29,7 +28,7 @@ public class Vein extends DisappearingEntity {
         Optional<Point> openPt = world.findOpenAround(getPosition());
 
         if (openPt.isPresent()) {
-            ActiveEntity ore = Factory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
+            ActiveEntity ore = Factory.createOre(ORE_ID_PREFIX + getId(), openPt.get(),
                     ORE_CORRUPT_MIN + getRandom().nextInt(
                             ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
                     imageStore.getImageList(WorldLoader.ORE_KEY));
