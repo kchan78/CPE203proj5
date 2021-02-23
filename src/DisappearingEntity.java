@@ -23,13 +23,4 @@ public abstract class DisappearingEntity extends ActiveEntity{
 
     protected String getId(){ return id; }
 
-    public void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-        scheduler.scheduleEvent(this,
-                Factory.createActivityAction(this, world, imageStore),
-                getActionPeriod());
-    }
 }

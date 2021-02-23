@@ -58,5 +58,5 @@ public class MinerFull extends Miners {
             WorldModel world,
             Entity target,
             EventScheduler scheduler){}
-    
+
 }

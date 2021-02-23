@@ -19,7 +19,7 @@ public abstract class Miners extends EntityMoving{
         this.resourceLimit = resourceLimit;
     }
 
-    public Point nextPositionHelper(WorldModel world, Point destPos, Point newPos, int horiz) {
+    protected Point nextPositionHelper(WorldModel world, Point destPos, Point newPos, int horiz) {
         if (horiz == 0 || world.isOccupied(newPos)) {
             int vert = Integer.signum(destPos.y -  getPosition().y);
             newPos = new Point( getPosition().x,  getPosition().y + vert);

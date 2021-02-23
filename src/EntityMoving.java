@@ -20,7 +20,7 @@ public abstract class EntityMoving extends AnimatedEntity {
             Entity target,
             EventScheduler scheduler) {
         if ( getPosition().adjacent(target.getPosition())) {
-            //helper abstract class
+            //abstract helper method
             moveToHelper(world, target, scheduler);
 
             return true;
@@ -40,7 +40,7 @@ public abstract class EntityMoving extends AnimatedEntity {
         }
     }
 
-    abstract void moveToHelper(
+    protected abstract void moveToHelper(
             WorldModel world,
             Entity target,
             EventScheduler scheduler);
@@ -52,7 +52,7 @@ public abstract class EntityMoving extends AnimatedEntity {
         return nextPositionHelper(world, destPos, newPos, horiz);
     }
 
-    abstract Point nextPositionHelper(WorldModel world, Point destPos, Point newPos, int horiz);
+    protected abstract Point nextPositionHelper(WorldModel world, Point destPos, Point newPos, int horiz);
 
-    public int scheduleActionsHelper() { return 0;}
+    protected int scheduleActionsHelper() { return 0;}
 }

@@ -22,9 +22,13 @@ public abstract class ActiveEntity extends Entity {
 
     protected int getActionPeriod() { return actionPeriod; }
 
-    public abstract void scheduleActions(
+    public void scheduleActions(
             EventScheduler scheduler,
             WorldModel world,
-            ImageStore imageStore);
+            ImageStore imageStore) {
+        scheduler.scheduleEvent(this,
+                Factory.createActivityAction(this, world, imageStore),
+                getActionPeriod());
+    }
 
 }
