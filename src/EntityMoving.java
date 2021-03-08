@@ -1,11 +1,16 @@
 // for miners and ore blobs
 
 import processing.core.PImage;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+
 
 public abstract class EntityMoving extends AnimatedEntity {
+
+
+    private PathingStrategy strategy = new SingleStepPathingStrategy();
+    //private PathingStrategy strategy = new AStarPathingStrategy();
 
     public EntityMoving(
             Point position,
@@ -45,14 +50,23 @@ public abstract class EntityMoving extends AnimatedEntity {
             Entity target,
             EventScheduler scheduler);
 
-    protected Point nextPosition(WorldModel world, Point destPos) {
-        int horiz = Integer.signum(destPos.x - getPosition().x);
-        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
 
-        return nextPositionHelper(world, destPos, newPos, horiz);
+    protected Point nextPosition(WorldModel world, Point destPos) {
+
+        List<Point> points = strategy.computePath(getPosition(), destPos,
+                            nextPositionHelper(world),                  //canPassThrough
+                            Point::adjacent,                            // withinReach
+                            PathingStrategy.CARDINAL_NEIGHBORS);        // potentialNeighbors
+
+        if (points.size() == 0)
+        {
+            return getPosition();
+        }
+
+        return points.get(0);
     }
 
-    protected abstract Point nextPositionHelper(WorldModel world, Point destPos, Point newPos, int horiz);
+    protected abstract Predicate<Point> nextPositionHelper(WorldModel world);
 
     protected int scheduleActionsHelper() { return 0;}
 }
