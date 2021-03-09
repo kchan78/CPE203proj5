@@ -8,8 +8,8 @@ public class OreBlob extends EntityMoving {
 
     private static final String QUAKE_KEY = "quake";
 
-    private PathingStrategy strategy = new SingleStepPathingStrategy();
-    //private PathingStrategy strategy = new AStarPathingStrategy();
+    //private PathingStrategy strategy = new SingleStepPathingStrategy();
+    private PathingStrategy strategy = new AStarPathingStrategy();
 
     public OreBlob(
             Point position,

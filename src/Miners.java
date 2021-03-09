@@ -9,8 +9,8 @@ public abstract class Miners extends EntityMoving{
     private final int resourceLimit;
 
     private List<Point> path;
-    private PathingStrategy strategy = new SingleStepPathingStrategy();
-    //private PathingStrategy strategy = new AStarPathingStrategy();
+   // private PathingStrategy strategy = new SingleStepPathingStrategy();
+    private PathingStrategy strategy = new AStarPathingStrategy();
 
 
     public Miners(
