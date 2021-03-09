@@ -9,8 +9,8 @@ import java.util.function.Predicate;
 public abstract class EntityMoving extends AnimatedEntity {
 
 
-    private PathingStrategy strategy = new SingleStepPathingStrategy();
-    //private PathingStrategy strategy = new AStarPathingStrategy();
+ //   private PathingStrategy strategy = new SingleStepPathingStrategy();
+    private PathingStrategy strategy = new AStarPathingStrategy();
 
     public EntityMoving(
             Point position,

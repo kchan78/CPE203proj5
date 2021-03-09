@@ -8,11 +8,6 @@ public abstract class Miners extends EntityMoving{
     private final String id;
     private final int resourceLimit;
 
-    private List<Point> path;
-   // private PathingStrategy strategy = new SingleStepPathingStrategy();
-    private PathingStrategy strategy = new AStarPathingStrategy();
-
-
     public Miners(
             Point position,
             List<PImage> images,
@@ -25,22 +20,6 @@ public abstract class Miners extends EntityMoving{
         this.resourceLimit = resourceLimit;
     }
 
-    protected Point nextPosition(WorldModel world, Point destPos) {
-
-        List<Point> points;
-
-        points = strategy.computePath(getPosition(), destPos,
-                p ->  world.withinBounds(p) && !world.isOccupied(p),    // canPassThrough
-                Point::adjacent,                                        // withinReach
-                PathingStrategy.CARDINAL_NEIGHBORS);                    // potentialNeighbors
-
-            if (points.size() == 0)
-            {
-                return getPosition();
-            }
-
-        return points.get(0);
-    }
 
     protected Predicate<Point> nextPositionHelper(WorldModel world) {
         return p ->  world.withinBounds(p) && !world.isOccupied(p);
